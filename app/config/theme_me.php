@@ -21,8 +21,10 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
+        ['region' => 'header', 'template' => 'me/header', 'data' => [
+	    'siteTitle' => "Min me-sida i PHPMVC",
+            'siteTagline' => "Här är en tagline som säger nåt vackert",], 'sort' => -1],
+        ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
     ],
 
 
