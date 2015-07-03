@@ -63,9 +63,9 @@ return [
         ],
 
         // This is a menu item
-        'about' => [
-            'text'  =>'About',
-            'url'   => $this->di->get('url')->create('about'),
+        'redovisning' => [
+            'text'  =>'Redovisning',
+            'url'   => $this->di->get('url')->create('redovisning'),
             'title' => 'Internal route within this frontcontroller'
         ],
     ],
