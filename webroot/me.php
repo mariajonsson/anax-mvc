@@ -12,6 +12,20 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->router->add('', function() use ($app) {
  
 });
+
+$app->router->add('me', function() use ($app) {
+ 
+    $app->theme->setTitle("Me");
+ 
+    $content = $app->fileContent->get('me.md');
+    $byline  = $app->fileContent->get('byline.md');
+ 
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+ 
+});
  
 $app->router->add('redovisning', function() use ($app) {
 	
