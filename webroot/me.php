@@ -14,6 +14,9 @@ $app->router->add('', function() use ($app) {
 });
  
 $app->router->add('redovisning', function() use ($app) {
+	
+	$app->theme->setTitle("Redovisning");
+    $app->views->add('me/redovisning');
  
 });
  
