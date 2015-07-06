@@ -25,7 +25,7 @@ return [
             'title' => 'Home route of current frontcontroller'
         ],
  
-        // This is a menu item
+        /* This is a menu item
         'test'  => [
             'text'  => 'Submenu',
             'url'   => $this->di->get('url')->create('submenu'),
@@ -60,14 +60,16 @@ return [
                 ],
             ],
         ],
+        */
  
-        // This is a menu item
+        /*This is a menu item
         'controller' => [
             'text'  =>'Controller (marked for all descendent actions)',
             'url'   => $this->di->get('url')->create('controller'),
             'title' => 'Url to relative frontcontroller, other file',
             'mark-if-parent-of' => 'controller',
         ],
+        */
 
         // This is a menu item
         'redovisning' => [
