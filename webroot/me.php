@@ -39,6 +39,19 @@ $app->router->add('redovisning', function() use ($app) {
  
 $app->router->add('source', function() use ($app) {
  
+    $app->theme->addStylesheet('css/source.css');
+    $app->theme->setTitle("Källkod");
+ 
+    $source = new \Mos\Source\CSource([
+        'secure_dir' => '..', 
+        'base_dir' => '..', 
+        'add_ignore' => ['.htaccess'],
+    ]);
+ 
+    $app->views->add('me/source', [
+        'content' => $source->View(),
+    ]);
+ 
 });
  
 $app->router->handle();
