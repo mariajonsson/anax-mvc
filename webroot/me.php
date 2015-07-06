@@ -17,10 +17,10 @@ $app->router->add('me', function() use ($app) {
  
     $app->theme->setTitle("Me");
  
-    $content = $app->fileContent->get('me.md');
+    $content = $app->fileContent->get('me/me.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
  
-    $byline = $app->fileContent->get('byline.md');
+    $byline = $app->fileContent->get('me/byline.md');
     $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
  
     $app->views->add('me/page', [

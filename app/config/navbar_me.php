@@ -17,6 +17,13 @@ return [
             'url'   => $this->di->get('url')->create(''),
             'title' => 'Home route of current frontcontroller'
         ],
+        
+                // This is a menu item
+        'me'  => [
+            'text'  => 'Me',
+            'url'   => $this->di->get('url')->create('me'),
+            'title' => 'Home route of current frontcontroller'
+        ],
  
         // This is a menu item
         'test'  => [
@@ -66,6 +73,13 @@ return [
         'redovisning' => [
             'text'  =>'Redovisning',
             'url'   => $this->di->get('url')->create('redovisning'),
+            'title' => 'Internal route within this frontcontroller'
+        ],
+        
+                // This is a menu item
+        'source' => [
+            'text'  =>'Källkod',
+            'url'   => $this->di->get('url')->create('source'),
             'title' => 'Internal route within this frontcontroller'
         ],
     ],
