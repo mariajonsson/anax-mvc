@@ -1,1 +1,1 @@
-Byline
+Att koda är ett sätt att vara kreativ. Jag får även utlopp för kreativitet på andra sätt, som konstnär och illustratör. Väntar på en idé till ett projekt där jag kan använda båda sidor.
