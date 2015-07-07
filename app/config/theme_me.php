@@ -22,8 +22,8 @@ return [
      */
     'views' => [
         ['region' => 'header', 'template' => 'me/header', 'data' => [
-	    'siteTitle' => "Min me-sida i PHPMVC",
-            'siteTagline' => "Här är en tagline som säger nåt vackert",], 'sort' => -1],
+	    'siteTitle' => "Min me-sida i phpmvc",
+            'siteTagline' => "PHP-programmering och ramverkstänkande baserat på Model View Controller (MVC)",], 'sort' => -1],
         ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
 		    [
         'region' => 'navbar', 
