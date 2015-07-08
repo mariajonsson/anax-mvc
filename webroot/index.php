@@ -37,7 +37,13 @@ $app->router->add('me', function() use ($app) {
 $app->router->add('redovisning', function() use ($app) {
 	
 	$app->theme->setTitle("Redovisning");
-    $app->views->add('me/redovisning');
+	
+	$content = $app->fileContent->get('redovisning.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+	
+    $app->views->add('me/redovisning', [
+        'content' => $content,
+    ]);
  
 });
  
