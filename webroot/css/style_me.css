@@ -45,14 +45,14 @@ a {
   color: #deba6f;
   position: absolute;
   top: 6px;
-  left: 130px;
+  left: 145px;
   font-size: 48px;
 }
 
 .siteslogan {
   position: absolute;
   top: 65px;
-  left: 130px;
+  left: 145px;
   font-style: italic;
   color: #88A2AA;
 }
@@ -84,14 +84,13 @@ a {
  * For articles
  */
 .article1 {
-  width: 700px;
-  border-right: 1px solid #ccc;
+  width: 770px;
   padding-right: 1em;
 }
 
 .article1 h1,
 .article1 h2 {
-  border-bottom: 1px solid #ccc;
+  
 }
 
 .byline {
@@ -99,6 +98,7 @@ a {
   border-top: 1px dashed #ccc;
   padding-top: 22px;
   color: #666;
+  font-size: 0.9em;
 }
 
 .byline p {

@@ -7,7 +7,7 @@
 }
 
 .navbar {
-  background-color: #eee;
+  background-color: #DEE5E9;
   border-radius: 4px;
 }
  
@@ -26,7 +26,7 @@
  
 .navbar a {
   display: block;
-  padding: 1em;
+  padding: 0.5em;
   text-decoration: none;
   color: inherit;
   white-space: nowrap; 
@@ -34,15 +34,15 @@
 }
 
 .navbar li:hover {
-  color: #666; 
-  border-color: #666;
-  background-color: #ddd;
+  color: #222; 
+  border-color: #DEBA6F;
+  background-color: #88A2AA;
 } 
  
 .navbar li.selected-parent, 
 .navbar li.selected {
   color: #222; 
-  border-color: #222;
+  border-color: #DEBA6F;
 }
 
 .navbar ul ul {

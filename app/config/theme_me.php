@@ -22,7 +22,7 @@ return [
      */
     'views' => [
         ['region' => 'header', 'template' => 'me/header', 'data' => [
-	    'siteTitle' => "Min me-sida i phpmvc",
+	    'siteTitle' => "phpmvc",
             'siteTagline' => "PHP-programmering och ramverkstänkande baserat på Model View Controller (MVC)",], 'sort' => -1],
         ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
 		    [
