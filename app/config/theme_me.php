@@ -50,7 +50,7 @@ return [
         'title_append' => ' | Anax a web template',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar.css'],
+        'stylesheets' => ['css/style_me.css', 'css/navbar_me.css'],
 
         // Inline style
         'style' => null,
