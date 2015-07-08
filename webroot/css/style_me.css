@@ -12,6 +12,7 @@ body {
 
 h1 {
   font-size: 2.2em;
+  color: #88A2AA;
 }
 
 a {
@@ -37,6 +38,7 @@ a {
 }
 
 .sitetitle {
+  color: #deba6f;
   position: absolute;
   top: 6px;
   left: 130px;
@@ -48,7 +50,7 @@ a {
   top: 65px;
   left: 130px;
   font-style: italic;
-  color: #666;
+  color: #88A2AA;
 }
 
 
