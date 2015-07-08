@@ -1,1 +1,1 @@
-Att koda är ett sätt att vara kreativ. Jag får även utlopp för kreativitet på andra sätt, som konstnär och illustratör. Väntar på en idé till ett projekt där jag kan använda båda sidor.
+Att koda är ett sätt att vara kreativ. Är även kreativ på andra sätt, genom att teckna och göra konst. Jag väntar på en idé till ett projekt där jag kan kombinera konst och kod.
