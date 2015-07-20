@@ -8,9 +8,9 @@
         <p><label>Hemsida:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
         <p><label>Epost:<br/><input type='text' name='mail' value='<?=$mail?>'/></label></p>
         <p class=buttons>
-            <input type='submit' name='doCreate' value='Comment' onClick="this.form.action = '<?=$this->url->create('comment/add')?>'"/>
-            <input type='reset' value='Reset'/>
-            <input type='submit' name='doRemoveAll' value='Remove all' onClick="this.form.action = '<?=$this->url->create('comment/remove-all')?>'"/>
+            <input type='submit' name='doSave' value='Spara' onClick="this.form.action = '<?=$this->url->create('comment/save/' . $id)?>'"/>
+            <input type='reset' value='Återställ'/>
+            <input type='submit' name='doRemoveAll' value='Radera alla' onClick="this.form.action = '<?=$this->url->create('comment/remove-all')?>'"/>
         </p>
         <output><?=$output?></output>
         </fieldset>
