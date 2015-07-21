@@ -10,7 +10,7 @@
         <p class=buttons>
             <input type='submit' name='doSave' value='Spara' onClick="this.form.action = '<?=$this->url->create('comment/save/' . $id)?>'"/>
             <input type='reset' value='Återställ'/>
-            <input type='submit' name='doRemoveAll' value='Radera alla' onClick="this.form.action = '<?=$this->url->create('comment/remove-all')?>'"/>
+            <input type='submit' name='doDelete' value='Radera kommentar' onClick="this.form.action = '<?=$this->url->create('comment/delete' .$id)?>'"/>
         </p>
         <output><?=$output?></output>
         </fieldset>
