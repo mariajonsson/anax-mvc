@@ -8,7 +8,7 @@
 require __DIR__.'/config_with_app.php'; 
 
 
-/*$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);*/
+$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_02.php');
@@ -38,6 +38,24 @@ $app->router->add('', function() use ($app) {
         'content' => $content,
         'byline' => $byline,
     ]);
+    
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+        'pagekey'   => 'me-page',
+        'redirect'  => '',
+    ]);
+    
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+        'params'     => ['me-page'],
+    ]);
+
+
  
 });
  
@@ -60,18 +78,21 @@ $app->router->add('comment', function() use ($app) {
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
 
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'view',
-    ]);
-
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
         'name'      => null,
         'content'   => null,
         'output'    => null,
+        'pagekey'   => 'comment-page',
+        'redirect'  => 'comment',
     ]);
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+        'params'     => ['comment-page'],
+    ]);
+
 });
  
 $app->router->add('source', function() use ($app) {
