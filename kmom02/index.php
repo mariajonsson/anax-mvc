@@ -39,6 +39,7 @@ $app->router->add('', function() use ($app) {
         'byline' => $byline,
     ]);
     
+    /*
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
@@ -46,6 +47,11 @@ $app->router->add('', function() use ($app) {
         'content'   => null,
         'output'    => null,
         'pagekey'   => 'me-page',
+        'redirect'  => '',
+    ]);*/
+    
+    $app->views->add('comment/formhide', [
+    	'pagekey'   => 'me-page',
         'redirect'  => '',
     ]);
     
@@ -77,7 +83,7 @@ $app->router->add('comment', function() use ($app) {
 
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
-
+/*
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
@@ -87,6 +93,12 @@ $app->router->add('comment', function() use ($app) {
         'pagekey'   => 'comment-page',
         'redirect'  => 'comment',
     ]);
+*/    
+    $app->views->add('comment/formhide', [
+    	'pagekey'   => 'comment-page',
+        'redirect'  => 'comment',
+    ]);
+    
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view',
