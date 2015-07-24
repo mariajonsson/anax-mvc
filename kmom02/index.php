@@ -8,7 +8,7 @@
 require __DIR__.'/config_with_app.php'; 
 
 
-$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
+/* $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN); */
 
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_02.php');
@@ -69,10 +69,12 @@ $app->router->add('comment', function() use ($app) {
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
     
+    $formvisibility = $app->request->getPost('form');
+
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view',
-        'params'     => ['comment-page','show-form','comment'],
+        'params'     => ['comment-page', $formvisibility,'comment'],
     ]);
 
 });

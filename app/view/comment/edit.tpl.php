@@ -2,7 +2,7 @@
 <form method=post>
 <input type=hidden name="redirect" value="<?=$this->url->create($redirect)?>">
 <fieldset>
-<legend>Lämna en kommentar</legend>
+<legend>Redigera kommentar (id #<?=$id?>)</legend>
 <p><label>Kommentar:<br/><textarea name='content'><?=$content?></textarea></label></p>
 <p><label>Namn:<br/><input type='text' name='name' value='<?=$name?>'/></label></p>
 <p><label>Hemsida:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
