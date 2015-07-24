@@ -5,7 +5,7 @@
 <?php foreach ($comments as $id => $comment) : ?>
 <div class='comment'>
 	<div class='comment-id'>
-<a href='<?=$this->url->create('comment/edit/'.$pagekey.'/'.$id)?>'>#<?=$id?></a>
+<a href='<?=$this->url->create('comment/edit/'.$pagekey.'/'.$id.'/'.$redirect)?>'>#<?=$id?></a> <img src='<?=$comment['gravatar']?>?s=50'>
 	</div>
 	<div class='comment-content'>
 	<p class='comment-header'><?=$comment['name']?> <?=$comment['timestamp']?></p>

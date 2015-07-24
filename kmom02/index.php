@@ -66,14 +66,13 @@ $app->router->add('redovisning', function() use ($app) {
 //Comments
 $app->router->add('comment', function() use ($app) {
 		
-	$app->theme->addStylesheet('css/comments.css');	
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
     
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view',
-        'params'     => ['comment-page',null,'comment'],
+        'params'     => ['comment-page','show-form','comment'],
     ]);
 
 });
