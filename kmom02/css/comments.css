@@ -1,0 +1,39 @@
+/**
+ * Style for comments
+ */
+.comments {
+  max-width: 600px;
+}
+ 
+.comment {
+  font-size: 0.8em;
+
+} 
+
+
+.comment-id {
+  display: inline-block;
+  float:left;
+  width: 70px;
+} 
+
+.comment-content {
+  display: inline-block;
+  float:right;
+  width: 520px;
+} 
+
+.comment-divider {
+    clear: both;
+    height:10px;
+} 
+ 
+.comment-header {
+  line-height: 1em;
+  margin-top: 2px;
+  padding-top: 0px;
+  font-weight: bold;
+  color: grey;
+} 
+
+
