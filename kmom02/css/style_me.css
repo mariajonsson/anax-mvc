@@ -11,12 +11,18 @@ body {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 2.1em;
   color: #88A2AA;
 }
 
 h2 {
+  font-size: 1.9em;
   color: #5a777f;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: #93304E;
 }
 
 a {

@@ -39,11 +39,12 @@ $app->router->add('', function() use ($app) {
         'byline' => $byline,
     ]);
     
+    $formvisibility = $app->request->getPost('form');
 
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view',
-        'params'     => ['me-page'],
+        'params'     => ['me-page', $formvisibility,''],
     ]);
 
 

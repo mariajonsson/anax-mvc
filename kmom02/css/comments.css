@@ -10,12 +10,25 @@
 
 } 
 
+.comment a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #5491D4;
+}
+
 
 .comment-id {
   display: inline-block;
+  vertical-align: top;
   float:left;
   width: 70px;
 } 
+
+.comment-id a {
+  vertical-align: top;
+
+}
+
 
 .comment-content {
   display: inline-block;
