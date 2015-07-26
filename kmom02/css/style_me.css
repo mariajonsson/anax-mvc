@@ -29,6 +29,14 @@ a {
   color: #823038;
 }
 
+output {
+  color: #845D23;
+  margin-bottom: 15px;
+  padding: 15px;
+  width: 600px;
+  display: inline-block;
+}
+
 /**
  * Layout of the main page elements 
  */

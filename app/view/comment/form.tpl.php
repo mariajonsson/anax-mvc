@@ -1,3 +1,4 @@
+<output><?=$output?></output>
 <div class='comment-form'>
 <form method=post>
 <input type=hidden name="redirect" value="<?=$this->url->create($redirect)?>">
@@ -14,7 +15,6 @@
 <input type='reset' value='Återställ'/>
 <input type='submit' name='doRemoveAll' value='Radera alla' onClick="this.form.action = '<?=$this->url->create('comment/remove-all')?>'"/>
 </p>
-<output><?=$output?></output>
 </fieldset>
 </form>
 </div>

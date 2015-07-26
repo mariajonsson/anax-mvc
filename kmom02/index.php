@@ -40,6 +40,7 @@ $app->router->add('', function() use ($app) {
     ]);
     
     $formvisibility = $app->request->getPost('form');
+    
 
     $app->dispatcher->forward([
         'controller' => 'comment',
