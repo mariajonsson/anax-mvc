@@ -1,3 +1,4 @@
+<output><?=$output?></output>
 <div class='comment-form'>
 <form method=post>
 <input type=hidden name="redirect" value="<?=$this->url->create($redirect)?>">
@@ -12,7 +13,6 @@
 <input type='reset' value='Återställ'/>
 <input type='submit' name='doDelete' value='Radera kommentar' onClick="this.form.action = '<?=$this->url->create('comment/delete/'.$pagekey.'/' .$id)?>'"/>
 </p>
-<output><?=$output?></output>
 </fieldset>
 </form>
 </div>
