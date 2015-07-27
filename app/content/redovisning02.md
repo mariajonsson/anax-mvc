@@ -1,0 +1,17 @@
+<a id='kmom02'>Kmom02</a>
+------
+
+**Kursmomentet, allmänt**
+
+**Composer**: Det var lite oklart för mig var jag skulle installera composer. Så först installerade jag det i en katalog och insåg att det då bara fungerade i den katalogens sökväg. Såg sedan hur man skulle göra för att få det att fungera globalt, genom att lägga i user/local/bin. Jag blev också lite fundersam till om man skulle köra composer för att installera samma paket både lokalt och på studentservern. I vilket fall så testade jag på studentservern också. Såg filerna när jag körde "dir" kommandot i putty, men inte när jag uppdaterade filstrukturen i filezilla, vilket jag tyckte var konstigt. Senare när jag loggade in igen såg jag dock filerna i filezilla, så det verkade fungera ändå. Det är väl en ganska smidig lösning att kunna ladda ner via kommandoterminalen med ett kort kommando och alla kataloger och filer lägger sig på rätt plats, redo att börja användas.
+
+**Packagist**: Jag tittade igenom Packagist, tänkte att jag kanske skulle hitta något intressant till ramverket. Tyckte att det var lite svårt att "browsa" utan att ha någon idé om vad man sökte efter. Det kunde ha funnits kategorier att välja mellan t.ex. Jag sökte med "anax" som sökord men det verkade vara väldigt många "flash message"-paket för anax, vilket får mig att misstänka att det är/har varit en uppgift i någon kurs :). Eftersom jag ville lägga till validering av kommentarer letade jag efter paket med t.ex. epostvalidering och valde ett som jag testade att installera och det fungerade direkt att använda. Paketet jag valde var ganska enkelt, men jag valde det mest för att testa. Framöver kommer jag kanske att hitta fler. Såg till exempel font awesome som ju är himla användbart. Cimage som man känner igen från förra kursen tror jag faktiskt att jag ska installera.
+
+**klasser/kontroller/begrepp**: Jag tyckte till en början att det var svårt att greppa dispatchningen. Det är fortfarande inte helt solklart. Men i och med att man fick jobba in nya metoder i klasserna och anropa dem på olika sätt så förstod jag bättre hur de olika delarna hänger ihop. Det vill säga hur det fungerar praktiskt, men själva begreppen, som t.ex. tjänster, behöver jag fundera lite mer på. Jag funderade lite över varför vissa funktioner låg just i CommentController och andra i CommentsInSession. Kom fram till att just CommentsInSession kanske kan bytas ut mot CommentsInDatabase eller liknande, fast med metoder med samma namn som anropas i CommentController? Så behöver man inte byta ut båda klasserna.
+
+**Svagheter i koden för phpmvc/comment**: Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något? Jag tänkte att den data som skickas in med formuläret kanske kunde valideras innan den sparas. T.ex. att kolla att hemsideadressen har formen av en hemsideadress och att e-postadressen har formen av en epostadress. Jag lade alltså till två metoder i CommentController: validateCommentAction() och editFormAction(). Den ena kollar datat som kommer in, sparar felmeddelande och returnerar antingen true eller false beroende på om datat är godkänt eller ej. Den andra visar en vy med det genererade felmeddelandet och ett formulär där man får ändra det inskrivna datat. I validateCommentAction() använder jag en metod från det paket jag laddade ner för epostvalidering. Jag skulle säkert ha kunnat skriva kod själv för det, men ville testa att installera ett till paket från Packagist. 
+
+**Läsningen**: 
+
+**Extra**
+
