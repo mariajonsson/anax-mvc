@@ -50,7 +50,8 @@ return [
         'title_append' => ' | kursredovisning phpmvc',
 
         // Stylesheets
-        'stylesheets' => ['css/style_me.css', 'css/navbar_me.css', 'css/form.css', 'css/comments.css'],
+        // 'stylesheets' => ['css/style_me.css', 'css/navbar_me.css', 'css/form.css', 'css/comments.css'],
+        'stylesheets' => ['css/anax-grid/style.php'],
 
         // Inline style
         'style' => null,

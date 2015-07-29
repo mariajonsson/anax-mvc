@@ -1,0 +1,134 @@
+/**
+ * General elements
+ */
+
+@import url(figure.css);
+
+body {
+  color: #333;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  overflow-y: scroll;
+}
+
+
+a {
+  color: #823038;
+}
+
+output {
+  color: #845D23;
+  margin-bottom: 15px;
+  padding: 15px;
+  width: 600px;
+  display: inline-block;
+}
+
+/**
+ * Layout of the main page elements 
+ */
+#wrapper {
+  width: 980px; 
+  padding: 10px;
+}
+
+#wrap-featured,
+#wrap-main,
+#wrap-triptych,
+#wrap-footer-col {
+    .clearfix();
+}
+
+
+/**
+ * Layout for header
+ */
+#header {
+  position: relative;
+}
+
+
+
+
+/**
+ * Layout for main
+ */
+#main {
+  min-height: 20em;
+}
+
+
+/**
+ * Layout for footer
+ */
+#footer {
+  margin-top: 40px;
+  border-top: 1px solid #ccc;
+  padding-top: 22px;
+}
+
+.sitefooter {
+  color: #666;
+}
+
+
+/**
+ * For articles
+ */
+.article1 {
+  width: 770px;
+  padding-right: 1em;
+}
+
+
+
+.byline {
+  margin-top: 44px;
+  border-top: 1px dashed #ccc;
+  padding-top: 22px;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.byline p {
+  margin-top: 0;
+}
+
+/**
+* Column layout
+*/
+
+#header,
+#navbar,
+#flash,
+#footer {
+    .column(@columns);
+    margin-bottom: 22px;
+}
+ 
+#main {
+    .column(@columns / 3 * 2);
+    margin-bottom: 22px;
+}
+ 
+#sidebar {
+    .column(@columns / 3);
+    margin-bottom: 22px;
+}
+ 
+#featured-1,
+#featured-2,
+#featured-3,
+#triptych-1,
+#triptych-2,
+#triptych-3 {
+    .column(@columns / 3);
+    margin-bottom: 22px;
+}
+ 
+#footer-col-1,
+#footer-col-2,
+#footer-col-3, 
+#footer-col-4 {
+    .column(@columns / 4);
+    margin-bottom: 22px;
+}

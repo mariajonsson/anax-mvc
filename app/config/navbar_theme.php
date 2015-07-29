@@ -12,16 +12,44 @@ return [
     'items' => [
 
         
-                // This is a menu item
+        // This is a menu item
         'home'  => [
-            'text'  => 'Tema',
+            'text'  => 'Hem',
             'url'   => $this->di->get('url')->create(''),
-            'title' => 'tema'
+            'title' => 'hem'
         ],
- 
-       
         
                 // This is a menu item
+        'theme'  => [
+            'text'  => 'Tema',
+            'url'   => $this->di->get('url')->create('theme.php'),
+            'title' => 'tema'
+        ],
+        
+                
+        // This is a menu item
+        'regions'  => [
+            'text'  => 'Regioner',
+            'url'   => $this->di->get('url')->create('theme.php/regions'),
+            'title' => 'Regioner'
+        ],
+        
+                
+        // This is a menu item
+        'grid'  => [
+            'text'  => 'Rutnät',
+            'url'   => $this->di->get('url')->create('theme.php/grid'),
+            'title' => 'Rutnät'
+        ],
+ 
+        // This is a menu item
+        'typography'  => [
+            'text'  => 'Typografi',
+            'url'   => $this->di->get('url')->create('theme.php/typography'),
+            'title' => 'Typografi'
+        ],      
+        
+        // This is a menu item
         'source' => [
             'text'  =>'Källkod',
             'url'   => $this->di->get('url')->create('source'),
