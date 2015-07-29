@@ -54,6 +54,7 @@ $app->router->add('', function() use ($app) {
 $app->router->add('regions', function() use ($app) {
  
     $app->theme->addStylesheet('css/anax-grid/regions_demo.css');
+    $app->theme->addStylesheet('css/anax-grid/grid_demo.css');
     $app->theme->setTitle("Regioner");
  
     $app->views->addString('flash', 'flash')
@@ -74,6 +75,7 @@ $app->router->add('regions', function() use ($app) {
 
 $app->router->add('grid', function() use ($app) {
  
+    $app->theme->addStylesheet('css/anax-grid/grid_demo.css');
     $app->theme->setTitle("Rutnät");
  
     $content = $app->fileContent->get('theme.md');
