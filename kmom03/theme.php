@@ -73,24 +73,19 @@ $app->router->add('regions', function() use ($app) {
     
 });
 
-$app->router->add('grid', function() use ($app) {
+$app->router->add('typography', function() use ($app) {
  
     $app->theme->addStylesheet('css/anax-grid/grid_demo.css');
-    $app->theme->setTitle("Rutnät");
+    $app->theme->setTitle("Typografi");
  
-    $content = $app->fileContent->get('theme.md');
-    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
- 
-    $app->views->add('me/page', [
-        'content' => $content,
-
-    ]);
+    $app->views->add('theme/typography', [], 'main');
+    $app->views->add('theme/typography', [], 'sidebar');
     
 });
 
-$app->router->add('typography', function() use ($app) {
- 
-    $app->theme->setTitle("Typografi");
+$app->router->add('grid', function() use ($app) {
+	$app->theme->addStylesheet('css/anax-grid/grid_demo.css');	
+    $app->theme->setTitle("Rutnät");
  
     $content = $app->fileContent->get('theme.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
