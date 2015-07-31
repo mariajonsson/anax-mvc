@@ -96,6 +96,17 @@ $app->router->add('grid', function() use ($app) {
     ]);
     
 });
+
+$app->router->add('fontawesome', function() use ($app) {
+    $app->theme->setTitle("Font Awesome");
+ 
+    $main = $app->fileContent->get('fa-examples.html');
+    $sidebar = $app->fileContent->get('fa-enlarge.html');
+ 
+    $app->views->add('me/page', [ 'content' => $main, ], 'main');
+    $app->views->add('me/page', [ 'content' => $sidebar, ], 'sidebar');
+    
+});
  
 
  

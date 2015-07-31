@@ -47,7 +47,14 @@ return [
             'text'  => 'Typografi',
             'url'   => $this->di->get('url')->create('theme.php/typography'),
             'title' => 'Typografi'
-        ],      
+        ],    
+
+        // This is a menu item
+        'fontawesome'  => [
+            'text'  => 'Font Awesome',
+            'url'   => $this->di->get('url')->create('theme.php/fontawesome'),
+            'title' => 'Font Awesome'
+        ],  
         
         // This is a menu item
         'source' => [
