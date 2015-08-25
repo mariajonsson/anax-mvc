@@ -73,9 +73,18 @@ $app->router->add('regions', function() use ($app) {
     
 });
 
-$app->router->add('grid', function() use ($app) {
+$app->router->add('typography', function() use ($app) {
  
     $app->theme->addStylesheet('css/anax-grid/grid_demo.css');
+    $app->theme->setTitle("Typografi");
+ 
+    $app->views->add('theme/typography', [], 'main');
+    $app->views->add('theme/typography', [], 'sidebar');
+    
+});
+
+$app->router->add('grid', function() use ($app) {
+	$app->theme->addStylesheet('css/anax-grid/grid_demo.css');	
     $app->theme->setTitle("Rutnät");
  
     $content = $app->fileContent->get('theme.md');
@@ -88,17 +97,14 @@ $app->router->add('grid', function() use ($app) {
     
 });
 
-$app->router->add('typography', function() use ($app) {
+$app->router->add('fontawesome', function() use ($app) {
+    $app->theme->setTitle("Font Awesome");
  
-    $app->theme->setTitle("Typografi");
+    $main = $app->fileContent->get('fa-examples.html');
+    $sidebar = $app->fileContent->get('fa-enlarge.html');
  
-    $content = $app->fileContent->get('theme.md');
-    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
- 
-    $app->views->add('me/page', [
-        'content' => $content,
-
-    ]);
+    $app->views->add('me/page', [ 'content' => $main, ], 'main');
+    $app->views->add('me/page', [ 'content' => $sidebar, ], 'sidebar');
     
 });
  
