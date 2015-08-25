@@ -11,78 +11,49 @@ return [
     // Here comes the menu strcture
     'items' => [
 
-        // This is a menu item
-        'home'  => [
-            'text'  => 'Home',
-            'url'   => $this->di->get('url')->create(''),
-            'title' => 'Home route of current frontcontroller'
-        ],
         
                 // This is a menu item
         'me'  => [
             'text'  => 'Me',
-            'url'   => $this->di->get('url')->create('me'),
-            'title' => 'Home route of current frontcontroller'
+            'url'   => $this->di->get('url')->create(''),
+            'title' => 'Hem'
         ],
  
-        /* This is a menu item
-        'test'  => [
-            'text'  => 'Submenu',
-            'url'   => $this->di->get('url')->create('submenu'),
-            'title' => 'Submenu with url as internal route within this frontcontroller',
 
+        // This is a menu item
+        'redovisning' => [
+            'text'  =>'Redovisning',
+            'url'   => $this->di->get('url')->create('redovisning'),
+            'title' => 'Till redovisning av kursmoment'
+        ],
+        
+        // This is a menu item
+        'dice' => [
+            'text'  =>'Tärning',
+            'url'   => $this->di->get('url')->create('dice'),
+            'title' => 'Kasta tärning',
+            
             // Here we add the submenu, with some menu items, as part of a existing menu item
             'submenu' => [
 
                 'items' => [
 
                     // This is a menu item of the submenu
-                    'item 0'  => [
-                        'text'  => 'Item 0',
-                        'url'   => $this->di->get('url')->create('submenu/item-0'),
-                        'title' => 'Url as internal route within this frontcontroller'
+                    'diceroll'  => [
+                        'text'  => 'Kasta',
+                        'url'   => $this->di->get('url')->create('dice/roll'),
+                        'title' => 'Kastresultat'
                     ],
 
-                    // This is a menu item of the submenu
-                    'item 2'  => [
-                        'text'  => '/humans.txt',
-                        'url'   => $this->di->get('url')->asset('/humans.txt'),
-                        'title' => 'Url to sitespecific asset',
-                        'class' => 'italic'
-                    ],
-
-                    // This is a menu item of the submenu
-                    'item 3'  => [
-                        'text'  => 'humans.txt',
-                        'url'   => $this->di->get('url')->asset('humans.txt'),
-                        'title' => 'Url to asset relative to frontcontroller',
-                    ],
                 ],
             ],
-        ],
-        */
- 
-        /*This is a menu item
-        'controller' => [
-            'text'  =>'Controller (marked for all descendent actions)',
-            'url'   => $this->di->get('url')->create('controller'),
-            'title' => 'Url to relative frontcontroller, other file',
-            'mark-if-parent-of' => 'controller',
-        ],
-        */
-
-        // This is a menu item
-        'redovisning' => [
-            'text'  =>'Redovisning',
-            'url'   => $this->di->get('url')->create('redovisning'),
-            'title' => 'Internal route within this frontcontroller'
         ],
         
                 // This is a menu item
         'source' => [
             'text'  =>'Källkod',
             'url'   => $this->di->get('url')->create('source'),
-            'title' => 'Internal route within this frontcontroller'
+            'title' => 'Källkod'
         ],
     ],
  

@@ -42,11 +42,10 @@ if($roll) {
 // Prepare the page content
 
 $app->theme->addStylesheet("css/dice.css")
-           ->setVariable('title', "Throw a dice")
+           ->setVariable('title', "Kasta tärning")
            ->setVariable('main', "
-    <h1>Throw a dice</h1>
-    <p>This is a sample pagecontroller showing how to use <i>application specific modules</i> in a pagecontroller.</p>
-    <p>How many rolls do you want to do, <a href='?roll=1'>1 roll</a>, <a href='?roll=3'>3 rolls</a> or <a href='?roll=6'>6 rolls</a>? </p>
+    <h1>Kasta en tärning</h1>
+    <p>Hur många kast vill du göra, <a href='?roll=1'>1 kast</a>, <a href='?roll=3'>3 kast</a> or <a href='?roll=6'>6 kast</a>? </p>
     $html
 ");
 

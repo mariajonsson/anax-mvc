@@ -10,9 +10,6 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
  
-$app->router->add('', function() use ($app) {
- 
-});
 
 $app->router->add('me', function() use ($app) {
  

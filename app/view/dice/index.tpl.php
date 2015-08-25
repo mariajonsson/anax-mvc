@@ -1,11 +1,9 @@
-<h1>Throw a dice</h1>
+<h1>Kasta tärning</h1>
 
-<p>This is an example of a app throwing a dice game.</p>
-
-<p>How many rolls do you want to do, <a href='<?=$this->url->create("dice/roll?roll=1")?>'>1 roll</a>, <a href='<?=$this->url->create("dice/roll?roll=3")?>'>3 rolls</a> or <a href='<?=$this->url->create("dice/roll?roll=6")?>'>6 rolls</a>? </p>
+<p>Hur många kast vill du göra, <a href='<?=$this->url->create("dice/roll?roll=1")?>'>1 kast</a>, <a href='<?=$this->url->create("dice/roll?roll=3")?>'>3 kast</a> or <a href='<?=$this->url->create("dice/roll?roll=6")?>'>6 kast</a>? </p>
 
 <?php if(isset($roll)) : ?>
-<p>You made <?=$roll?> roll(s) and you got this serie.</p>
+<p>Du kastade <?=$roll?> gång(er) och fick följande serie.</p>
 
 <ul class='dice'>
 <?php foreach($results as $val) : ?>
@@ -13,5 +11,5 @@
 <?php endforeach; ?>
 </ul>
 
-<p>You got <?=$total?> as a total.</p>
+<p>Du fick <?=$total?> totalt.</p>
 <?php endif; ?>
