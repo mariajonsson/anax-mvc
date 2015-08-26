@@ -55,6 +55,9 @@ return [
 
         // Inline style
         'style' => null,
+        
+        //class for the html element
+        'htmlclass' => 'bright',
 
         // Favicon
         'favicon' => 'favicon.ico',

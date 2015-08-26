@@ -1,5 +1,5 @@
 <!doctype html>
-<html class='no-js' lang='<?=$lang?>'>
+<html class='no-js <?=$htmlclass?>' lang='<?=$lang?>'>
 <head>
 <meta charset='utf-8'/>
 <title><?=$title . $title_append?></title>
@@ -11,7 +11,7 @@
 <script src='<?=$this->url->asset($modernizr)?>'></script>
 </head>
 
-<body>
+<body class='<?= ! empty($this->request->getRoute())?$this->request->getRoute():'default'?>'>
 
 <div id='wrapper'>
 

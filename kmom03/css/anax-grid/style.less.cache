@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:44836:"html {
+a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:45578:"html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -523,12 +523,12 @@ output {
 }
 .sitetitle {
   position: absolute;
-  top: 6px;
+  top: 7.3333333333333px;
   left: 130px;
 }
 .siteslogan {
   position: absolute;
-  top: 45px;
+  top: 44px;
   left: 130px;
   color: #666;
 }
@@ -695,7 +695,7 @@ output {
   }
 }
 #navbar {
-  margin-bottom: 44px;
+  margin-bottom: 36px;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.2em;
 }
@@ -839,6 +839,46 @@ p.buttons {
 }
 .dark-blue {
   color: #184A6F;
+}
+.bright body {
+  background-color: #FFF;
+}
+.moody body {
+  background-color: #184A6F;
+}
+.moody h2,
+.moody h3,
+.moody h4,
+.moody h5,
+.moody h5 {
+  color: #579ACB;
+}
+.regions #wrapper {
+  background-image: url(grid_12_60_20.png);
+}
+.regions #header,
+.regions #navbar,
+.regions #flash,
+.regions #footer,
+.regions #main,
+.regions #sidebar,
+.regions #featured-1,
+.regions #featured-2,
+.regions #featured-3,
+.regions #triptych-1,
+.regions #triptych-2,
+.regions #triptych-3,
+.regions #footer-col-1,
+.regions #footer-col-2,
+.regions #footer-col-3,
+.regions #footer-col-4 {
+  background-color: #b4b4b4;
+}
+.grid #wrapper {
+  background-image: url(grid_12_60_20.png);
+}
+.typography #wrapper {
+  background-image: url(grid_12_60_20.png);
 }
 @font-face {
   font-family: 'FontAwesome';
@@ -2856,4 +2896,4 @@ p.buttons {
 .fa-fonticons:before {
   content: "\f280";
 }
-";s:5:"files";a:26:{s:61:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/style.less";i:1440601308;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/normalize.less";i:1438189629;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/variables.less";i:1440613308;s:62:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/mixins.less";i:1438193181;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/css3mixins.less";i:1438193192;s:60:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/grid.less";i:1438189629;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/typography.less";i:1440602814;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/structure.less";i:1440610867;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/responsive.less";i:1440607392;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/navbar_me.less";i:1440613275;s:60:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/form.less";i:1438189629;s:63:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/comment.less";i:1438189629;s:62:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/colors.less";i:1440602658;s:76:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/font-awesome.less";i:1440496738;s:73:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/variables.less";i:1440496738;s:70:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/mixins.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/path.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/core.less";i:1440496738;s:70:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/larger.less";i:1440496738;s:75:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/fixed-width.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/list.less";i:1440496738;s:79:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/bordered-pulled.less";i:1440496738;s:72:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/animated.less";i:1440496738;s:79:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/rotated-flipped.less";i:1440496738;s:71:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/stacked.less";i:1440496738;s:69:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/icons.less";i:1440496738;}s:7:"updated";i:1440613310;}
+";s:5:"files";a:27:{s:61:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/style.less";i:1440618315;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/normalize.less";i:1438189629;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/variables.less";i:1440613308;s:62:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/mixins.less";i:1438193181;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/css3mixins.less";i:1438193192;s:60:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/grid.less";i:1438189629;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/typography.less";i:1440602814;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/structure.less";i:1440619249;s:66:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/responsive.less";i:1440607392;s:65:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/navbar_me.less";i:1440619211;s:60:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/form.less";i:1438189629;s:63:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/comment.less";i:1438189629;s:62:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/colors.less";i:1440602658;s:60:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/anax-grid/site.less";i:1440618893;s:76:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/font-awesome.less";i:1440496738;s:73:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/variables.less";i:1440496738;s:70:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/mixins.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/path.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/core.less";i:1440496738;s:70:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/larger.less";i:1440496738;s:75:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/fixed-width.less";i:1440496738;s:68:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/list.less";i:1440496738;s:79:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/bordered-pulled.less";i:1440496738;s:72:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/animated.less";i:1440496738;s:79:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/rotated-flipped.less";i:1440496738;s:71:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/stacked.less";i:1440496738;s:69:"/var/www/html/phpmvc/Anax-MVC/kmom03/css/font-awesome/less/icons.less";i:1440496738;}s:7:"updated";i:1440619250;}
