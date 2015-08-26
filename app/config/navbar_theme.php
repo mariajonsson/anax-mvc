@@ -14,9 +14,9 @@ return [
         
         // This is a menu item
         'home'  => [
-            'text'  => 'Hem',
+            'text'  => '<i class="fa fa-home fa-fw"></i>',
             'url'   => $this->di->get('url')->create(''),
-            'title' => 'hem'
+            'title' => 'Tillbaka'
         ],
         
                 // This is a menu item
@@ -37,7 +37,7 @@ return [
                 
         // This is a menu item
         'grid'  => [
-            'text'  => 'Rutnät',
+            'text'  => ' Rutnät',
             'url'   => $this->di->get('url')->create('theme.php/grid'),
             'title' => 'Rutnät'
         ],
@@ -56,12 +56,6 @@ return [
             'title' => 'Font Awesome'
         ],  
         
-        // This is a menu item
-        'source' => [
-            'text'  =>'Källkod',
-            'url'   => $this->di->get('url')->create('source'),
-            'title' => 'Källkod'
-        ],
     ],
  
 

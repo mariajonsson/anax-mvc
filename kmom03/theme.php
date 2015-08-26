@@ -15,24 +15,6 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_theme.php');
 
 
 
-$app->router->add('', function() use ($app) {
- 
-    $app->theme->setTitle("Tema");
- 
-    $content = $app->fileContent->get('theme.md');
-    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
- 
-    $byline = $app->fileContent->get('byline.md');
-    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
- 
-    $app->views->add('me/page', [
-        'content' => $content,
-        'byline' => $byline,
-    ]);
-    
-    
- 
-});
 
 $app->router->add('', function() use ($app) {
  
@@ -41,13 +23,29 @@ $app->router->add('', function() use ($app) {
     $content = $app->fileContent->get('theme.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
  
-    $byline = $app->fileContent->get('byline.md');
-    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $sidebar = $app->fileContent->get('theme-sidebar.md');
+    $sidebar = $app->textFilter->doFilter($sidebar, 'shortcode, markdown');
+    
+    $triptych1 = $app->fileContent->get('theme-infogrid.md');
+    $triptych1 = $app->textFilter->doFilter($triptych1, 'shortcode, markdown');
+    
+    $triptych3 = $app->fileContent->get('theme-infotypography.md');
+    $triptych3 = $app->textFilter->doFilter($triptych3, 'shortcode, markdown');
+    
+    $triptych2 = $app->fileContent->get('theme-inforegions.md');
+    $triptych2 = $app->textFilter->doFilter($triptych2, 'shortcode, markdown');
  
-    $app->views->add('me/page', [
-        'content' => $content,
-        'byline' => $byline,
-    ]);
+    $app->views->add('theme/plain', [ 'content' => $content, ], 'main');
+    $app->views->add('theme/plain', [ 'content' => $sidebar, ], 'sidebar');
+    $app->views->add('theme/info', [ 'content' => $triptych1, 'class' => 'info'], 'triptych-1');
+    $app->views->add('theme/info', [ 'content' => $triptych2, 'class' => 'info' ], 'triptych-2');
+    $app->views->add('theme/info', [ 'content' => $triptych3, 'class' => 'info' ], 'triptych-3');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://lesscss.org/">{less}</a>', 'class' => 'info2' ], 'footer-col-3');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>', 'class' => 'info2' ], 'footer-col-1');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://semantic.gs/">Semantic grid system</a>', 'class' => 'info2' ], 'footer-col-2');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://getbootstrap.com/">Bootstrap</a>', 'class' => 'info2' ], 'footer-col-4');
+
+    
 
 });
 
@@ -90,10 +88,27 @@ $app->router->add('grid', function() use ($app) {
     $content = $app->fileContent->get('theme.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
  
-    $app->views->add('me/page', [
-        'content' => $content,
-
-    ]);
+    $sidebar = $app->fileContent->get('theme-sidebar.md');
+    $sidebar = $app->textFilter->doFilter($sidebar, 'shortcode, markdown');
+    
+    $triptych1 = $app->fileContent->get('theme-infogrid.md');
+    $triptych1 = $app->textFilter->doFilter($triptych1, 'shortcode, markdown');
+    
+    $triptych3 = $app->fileContent->get('theme-infotypography.md');
+    $triptych3 = $app->textFilter->doFilter($triptych3, 'shortcode, markdown');
+    
+    $triptych2 = $app->fileContent->get('theme-inforegions.md');
+    $triptych2 = $app->textFilter->doFilter($triptych2, 'shortcode, markdown');
+ 
+    $app->views->add('theme/plain', [ 'content' => $content, ], 'main');
+    $app->views->add('theme/plain', [ 'content' => $sidebar, ], 'sidebar');
+    $app->views->add('theme/info', [ 'content' => $triptych1, 'class' => 'info'], 'triptych-1');
+    $app->views->add('theme/info', [ 'content' => $triptych2, 'class' => 'info' ], 'triptych-2');
+    $app->views->add('theme/info', [ 'content' => $triptych3, 'class' => 'info' ], 'triptych-3');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://lesscss.org/">{less}</a>', 'class' => 'info2' ], 'footer-col-3');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>', 'class' => 'info2' ], 'footer-col-1');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://semantic.gs/">Semantic grid system</a>', 'class' => 'info2' ], 'footer-col-2');
+    $app->views->add('theme/info', [ 'content' => '<a href="http://getbootstrap.com/">Bootstrap</a>', 'class' => 'info2' ], 'footer-col-4');
     
 });
 

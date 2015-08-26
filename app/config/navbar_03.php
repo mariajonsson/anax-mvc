@@ -16,10 +16,19 @@ return [
         'home'  => [
             'text'  => 'Me',
             'url'   => $this->di->get('url')->create(''),
-            'title' => 'Me'
+            'title' => 'Me',
+            'mark-if-parent-of' => 'me',
         ],
  
-       
+        
+        // This is a menu item
+        'dice' => [
+            'text'  =>'Tärning',
+            'url'   => $this->di->get('url')->create('dice'),
+            'title' => 'Kasta tärning',
+            'mark-if-parent-of' => 'dice',
+            
+        ],
 
         // This is a menu item
         'redovisning' => [
@@ -32,7 +41,8 @@ return [
         'comment' => [
             'text'  =>'Kommentarer',
             'url'   => $this->di->get('url')->create('comment'),
-            'title' => 'Lämna kommentarer'
+            'title' => 'Lämna kommentarer',
+            'mark-if-parent-of' => 'comment',
         ],
         
                         // This is a menu item

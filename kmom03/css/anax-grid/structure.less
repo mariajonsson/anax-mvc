@@ -10,7 +10,7 @@ body {
 
 
 a {
-  color: #823038;
+  color: #088D00;
 }
 
 output {
@@ -26,6 +26,7 @@ output {
  */
 #wrapper {
     margin: 0 auto;
+    margin-top: 25px;
     padding: 0;
     max-width: 960px;
 }
@@ -45,14 +46,25 @@ output {
   position: relative;
 }
 
+.sitetitle {
+  position: absolute;
+  top: 6px;
+  left: 130px;
+}
 
+.siteslogan {
+  position: absolute;
+  top: 45px;
+  left: 130px;
+  color: #666;
+}
 
 
 /**
  * Layout for main
  */
 #main {
-  min-height: 20em;
+  min-height: 10em;
 }
 
 
@@ -76,6 +88,23 @@ output {
 .article1 {
   
   
+}
+
+.info {
+    border: 1px solid @grey;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.info2 {
+    padding: 7px;
+    border-radius: 3px;
+    background-color: @muteBlue;
+}
+
+.info2 a {
+  color: #FFF;
+  text-decoration: none;
 }
 
 
@@ -123,6 +152,7 @@ output {
     .column(@columns / 3);
     margin-bottom: 22px;
 }
+
  
 #footer-col-1,
 #footer-col-2,

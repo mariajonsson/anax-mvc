@@ -21,9 +21,9 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'me/header', 'data' => [
+        ['region' => 'header', 'template' => 'theme/header', 'data' => [
 	    'siteTitle' => "phpmvc",
-            'siteTagline' => "PHP-programmering och ramverkstänkande baserat på Model View Controller (MVC)",], 'sort' => -1],
+            'siteTagline' => "Tema för Anax-MVC",], 'sort' => -1],
         ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
 		    [
         'region' => 'navbar', 

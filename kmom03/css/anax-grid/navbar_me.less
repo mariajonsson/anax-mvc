@@ -4,11 +4,13 @@
  */
 #navbar {
   margin-bottom: 44px;
+  font-family: @fontFamilyHeadings;
+  font-size: @fontSizeNavMenu;
 }
 
 .navbar {
-  background-color: #DEE5E9;
-  border-radius: 4px;
+  background-color: #ededed;
+  border-radius: 2px;
 }
  
 .navbar ul {
@@ -19,14 +21,14 @@
  
 .navbar li {
   display: inline-block;
-  border-top: 4px solid transparent; 
+  border-top: 5px solid transparent; 
   color: #333; 
   position: relative; 
 }
  
 .navbar a {
   display: block;
-  padding: 0.5em;
+  padding: 0.4em;
   text-decoration: none;
   color: inherit;
   white-space: nowrap; 
@@ -35,14 +37,15 @@
 
 .navbar li:hover {
   color: #222; 
-  border-color: #DEBA6F;
-  background-color: #88A2AA;
+  border-color: #6BB5FF;
+
 } 
  
 .navbar li.selected-parent, 
+.navbar li.is-parent, 
 .navbar li.selected {
   color: #222; 
-  border-color: #DEBA6F;
+  border-color: #6BB5FF;
 }
 
 .navbar ul ul {
