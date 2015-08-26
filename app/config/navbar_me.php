@@ -32,21 +32,8 @@ return [
             'text'  =>'Tärning',
             'url'   => $this->di->get('url')->create('dice'),
             'title' => 'Kasta tärning',
+            'mark-if-parent-of' => 'dice',
             
-            // Here we add the submenu, with some menu items, as part of a existing menu item
-            'submenu' => [
-
-                'items' => [
-
-                    // This is a menu item of the submenu
-                    'diceroll'  => [
-                        'text'  => 'Kasta',
-                        'url'   => $this->di->get('url')->create('dice/roll'),
-                        'title' => 'Kastresultat'
-                    ],
-
-                ],
-            ],
         ],
         
                 // This is a menu item

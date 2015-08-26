@@ -39,3 +39,5 @@ Mycket text, mycket tekniskt.  "PHP The Right Way" och rekommendationerna från 
 Lägga upp Anax på Github. I det här kursmomentet ingick i en extrauppgift att lägga upp Anax-MVC på GitHub, vilket jag såg till att göra nästan det första jag gjorde innan jag började arbeta med uppgiften. Detta för att få en möjlighet att börja lära mig att arbeta med Git. Det har varit en tröskel att komma igång med Git tidigare, men nu när jag har kommit igång med det tycker jag att det känns mycket lättare. Jag tyckte att guiden på dbwebb var bra, jag tog även hjälp av Codeschool övningen och Gits egen dokumentation. Att använda GitHub känns som en bra lösning för mig eftersom jag använder 3 olika miljöer eftersom jag inte alltid sitter hemma och jobbar. Nu ligger all "originalkod" på ett ställe och jag behöver inte hålla reda på vad jag måste kopiera över, eftersom git håller reda på ev. ändringar.
 
 Jag lade till sidor för att kasta tärning, och använde den modul som medföljde som exempel, fast jag skrev om innehållstexten på svenska för att passa resten av me-sidan.
+ 
+ 
