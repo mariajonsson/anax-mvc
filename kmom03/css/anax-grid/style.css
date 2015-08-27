@@ -472,6 +472,22 @@ output {
   width: 600px;
   display: inline-block;
 }
+.z-normal {
+  position: static;
+  z-index: 0;
+}
+.z-over {
+  position: absolute;
+  z-index: 2;
+}
+.z-under {
+  position: absolute;
+  z-index: -2;
+}
+.z-under-under {
+  position: absolute;
+  z-index: -4;
+}
 #wrapper {
   margin: 0 auto;
   margin-top: 25px;
@@ -644,6 +660,20 @@ output {
   }
   body {
     font-size: 1.5em;
+  }
+  #main {
+    display: inline;
+    float: left;
+    width: 97.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+  #sidebar {
+    display: inline;
+    float: left;
+    width: 97.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
   }
 }
 @media (min-width: 768px) {

@@ -21,6 +21,31 @@ output {
   display: inline-block;
 }
 
+/**
+ * Positioning
+ *
+ */
+ 
+ .z-normal {
+  position: static;
+  
+  z-index: 0;
+} 
+
+.z-over {
+  position: absolute;
+  z-index: 2;
+} 
+
+.z-under {
+  position: absolute;
+  z-index: -2;
+}
+
+.z-under-under {
+  position: absolute;
+  z-index: -4;
+}
 
 /**
  * Layout of the main page elements 
@@ -111,9 +136,9 @@ output {
 
 
 .byline {
-  margin-top: 44px;
+  margin-top: @magicNumber * 2;
   border-top: 1px dashed #ccc;
-  padding-top: 22px;
+  padding-top: @magicNumber;
   color: #666;
   font-size: 0.9em;
 }
@@ -131,17 +156,17 @@ output {
 #flash,
 #footer {
     .column(@columns);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
  
 #main {
     .column(@columns / 3 * 2);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
  
 #sidebar {
     .column(@columns / 3);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
  
 #featured-1,
@@ -151,7 +176,7 @@ output {
 #triptych-2,
 #triptych-3 {
     .column(@columns / 3);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
 
  
@@ -160,5 +185,5 @@ output {
 #footer-col-3, 
 #footer-col-4 {
     .column(@columns / 4);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }

@@ -11,7 +11,7 @@
 <script src='<?=$this->url->asset($modernizr)?>'></script>
 </head>
 
-<body class='<?= ! empty($this->request->getRoute())?$this->request->getRoute():'default'?>'>
+<body class='<?= ! empty($this->request->getRouteParts()[0])?$this->request->getRouteParts()[0]:'default'?>'>
 
 <div id='wrapper'>
 
