@@ -11,3 +11,5 @@
 <i class="fa fa-bolt fa-3x z-over" style='margin-top:1em;margin-left:1em;'></i>
 
 </div>
+
+<small> *ikoner från [font awesome](http://fortawesome.github.io/Font-Awesome/)!* </small>
