@@ -13,6 +13,7 @@ require __DIR__.'/config_with_app.php';
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_04.php');
 
+
 $di->set('CommentController', function() use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
     $controller->setDI($di);
@@ -31,9 +32,13 @@ $di->set('UsersController', function() use ($di) {
     return $controller;
 });
 
+$di->set('form', '\Mos\HTMLForm\CForm');
+
+$app->session();
 
 $app->router->add('', function() use ($app) {
  
+    
     $app->theme->setTitle("Me");
  
     $content = $app->fileContent->get('me.md');
