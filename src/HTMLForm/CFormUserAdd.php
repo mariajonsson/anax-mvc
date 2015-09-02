@@ -71,10 +71,20 @@ class CFormUserAdd extends \Mos\HTMLForm\CForm
      */
     public function callbackSubmit()
     {
+	
+        $now = gmdate('Y-m-d H:i:s');
+
+	$this->newuser = new \Anax\Users\User();
+        $this->newuser->setDI($this->di);
+        $this->newuser->save(array('acronym' => $this->Value('acronym'), 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'created' => $now, 'updated' => $now, 'deleted' => null, 'active' => null));
+        
+           
+        $this->AddOutput($this->newuser->getProperties()['acronym']);
         $this->AddOutput("<p><i>DoSubmit(): Form was submitted. Do stuff (save to database) and return true (success) or false (failed processing form)</i></p>");
+        $this->AddOutput("<p><b>Name: " . $this->Value('acronym') . "</b></p>");
         $this->AddOutput("<p><b>Name: " . $this->Value('name') . "</b></p>");
         $this->AddOutput("<p><b>Email: " . $this->Value('email') . "</b></p>");
-        $this->AddOutput("<p><b>Phone: " . $this->Value('phone') . "</b></p>");
+        
         $this->saveInSession = true;
         return true;
     }

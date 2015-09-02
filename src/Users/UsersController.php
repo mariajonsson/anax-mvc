@@ -65,13 +65,11 @@ public function idAction($id = null)
  */
 public function addAction($acronym = null)
 {
-   /* if (!isset($acronym)) {
-        die("Missing acronym");
-    }*/
+
     
     $form = new \Anax\HTMLForm\CFormUserAdd();
     $form->setDI($this->di);
-     $form->check();
+    $form->check();
      
     $this->di->theme->setTitle("Lägg till användare");
     $this->di->views->add('default/page', [
@@ -80,7 +78,17 @@ public function addAction($acronym = null)
         ]);
         
    
-  /*
+      
+ /*
+    $url = $this->url->create('users/id/' . $this->users->id);
+    $this->response->redirect($url);
+   */ 
+    
+}
+
+
+public function insertUser($acronym)
+{
     $now = gmdate('Y-m-d H:i:s');
 
     $this->users->save([
@@ -90,12 +98,8 @@ public function addAction($acronym = null)
         'password' => password_hash($acronym, PASSWORD_DEFAULT),
         'created' => $now,
         'active' => $now,
-    ]);*/
- /*
-    $url = $this->url->create('users/id/' . $this->users->id);
-    $this->response->redirect($url);
-   */ 
-    
+    ]);
+
 }
 
 /**
