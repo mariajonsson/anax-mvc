@@ -30,10 +30,10 @@ public function listAction()
  
     $all = $this->users->findAll();
  
-    $this->theme->setTitle("List all users");
+    $this->theme->setTitle("Användare");
     $this->views->add('users/list-all', [
         'users' => $all,
-        'title' => "View all users",
+        'title' => "Alla användare",
     ]);
 }
 
@@ -46,11 +46,9 @@ public function listAction()
  */
 public function idAction($id = null)
 {
-
- 
     $user = $this->users->find($id);
  
-    $this->theme->setTitle("View user with id");
+    $this->theme->setTitle("Användare");
     $this->views->add('users/view', [
         'user' => $user,
     ]);
@@ -69,21 +67,16 @@ public function addAction($acronym = null)
     
     $form = new \Anax\HTMLForm\CFormUserAdd();
     $form->setDI($this->di);
-    $form->check();
-     
+    $status = $form->check();
+    
+  
     $this->di->theme->setTitle("Lägg till användare");
     $this->di->views->add('default/page', [
         'title' => "Lägg till användare",
         'content' => $form->getHTML()
         ]);
-        
-   
-      
- /*
-    $url = $this->url->create('users/id/' . $this->users->id);
-    $this->response->redirect($url);
-   */ 
     
+
 }
 
 
@@ -157,10 +150,25 @@ public function activeAction()
         ->andWhere('deleted is NULL')
         ->execute();
  
-    $this->theme->setTitle("Users that are active");
+    $this->theme->setTitle("Aktiva användare");
     $this->views->add('users/list-all', [
         'users' => $all,
-        'title' => "Users that are active",
+        'title' => "Aktiva användare",
+    ]);
+}
+
+
+public function inactiveAction()
+{
+    $all = $this->users->query()
+        ->where('active IS NULL')
+        ->andWhere('deleted is NULL')
+        ->execute();
+ 
+    $this->theme->setTitle("Inaktiva användare");
+    $this->views->add('users/list-all', [
+        'users' => $all,
+        'title' => "Inaktiva användare",
     ]);
 }
 }

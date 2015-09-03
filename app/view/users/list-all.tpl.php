@@ -1,9 +1,21 @@
 <h1><?=$title?></h1>
  
-<?php foreach ($users as $user) : ?>
+
+<table>
+  <tbody>
+    <tr><th>Id</th><th>Akronym</th><th>Namn</th><th></th></th></tr>
+    <?php foreach ($users as $user) : ?>
+    <tr>
+    <td><?=$user->getProperties()['id']?></td>
+    <td><a href="id/<?=$user->getProperties()['id']?>"><?=$user->getProperties()['acronym']?></a></td>
+    <td><?=$user->getProperties()['name']?></td>
+    <td><a href="update/<?=$user->getProperties()['id']?>">Ändra</a></td>
+    <td><a href="delete/<?=$user->getProperties()['id']?>">Ta bort</a></td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
  
-<pre><?=var_dump($user->getProperties())?></pre>
- 
-<?php endforeach; ?>
+
  
 <p><a href='<?=$this->url->create('')?>'>Home</a></p>
