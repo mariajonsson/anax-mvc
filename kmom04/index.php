@@ -21,7 +21,7 @@ $di->set('CommentController', function() use ($di) {
 });
 $di->setShared('db', function() {
     $db = new \Mos\Database\CDatabaseBasic();
-    $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
+    $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql_bth.php');
     $db->connect();
     return $db;
 });
@@ -151,6 +151,12 @@ $app->router->add('source', function() use ($app) {
  
 });
 
+$app->router->add('users', function() use ($app) {
+		$app->dispatcher->forward([
+        'controller' => 'users',
+        'action'     => 'list',
+    ]);
+});
 
 $app->router->add('setup', function() use ($app) {
  

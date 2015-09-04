@@ -55,7 +55,7 @@ return [
         // This is a menu item
         'users' => [
             'text'  =>'Användare',
-            'url'   => $this->di->get('url')->create('users/list'),
+            'url'   => $this->di->get('url')->create('users'),
             'title' => 'Användare i databasen', 
             'mark-if-parent-of' => 'users',
             

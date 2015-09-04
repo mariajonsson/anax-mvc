@@ -10,8 +10,8 @@
     <td><?=$user->getProperties()['email']?></td>
     <td><?=$user->getProperties()['active']?></td>
     <td><?=$user->getProperties()['created']?></td>
-    <td><a href="update/<?=$user->getProperties()['id']?>">Ändra</a></td>
-    <td><a href="delete/<?=$user->getProperties()['id']?>">Ta bort</a></td>
+    <td><a href="<?=$this->url->create('users/update').'/'.$user->getProperties()['id']?>">Ändra</a></td>
+    <td><a href="<?=$this->url->create('users/delete').'/'.$user->getProperties()['id']?>">Ta bort</a></td>
     </tr>
   </tbody>
 </table>

@@ -6,7 +6,7 @@ namespace Anax\HTMLForm;
  * Anax base class for wrapping sessions.
  *
  */
-class CFormUserAdd extends \Mos\HTMLForm\CForm
+class CFormUserUpdate extends \Mos\HTMLForm\CForm
 {
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;
@@ -17,7 +17,7 @@ class CFormUserAdd extends \Mos\HTMLForm\CForm
      * Constructor
      *
      */
-    public function __construct()
+    public function __construct($user)
     {
         parent::__construct([], [
             'acronym' => [
