@@ -79,6 +79,42 @@ public function addAction($acronym = null)
 
 }
 
+/**
+ * Update user.
+ *
+ * @param $id of user to update.
+ *
+ * @return void
+ */
+public function updateAction($id = null)
+{
+
+    if (!isset($id)) {
+        die("Missing id");
+    }
+    
+    $user = $this->users->find($id);
+    $name = $user->getProperties()['name'];
+    $acronym = $user->getProperties()['acronym'];
+    $email = $user->getProperties()['email'];
+    $active = $user->getProperties()['active'];
+    $deleted = $user->getProperties()['deleted'];
+    $created = $user->getProperties()['created'];
+    
+    $form = new \Anax\HTMLForm\CFormUserUpdate($id, $acronym, $name, $email, $active, $created);
+    $form->setDI($this->di);
+    $status = $form->check();
+    
+  
+    $this->di->theme->setTitle("Ändra användare");
+    $this->di->views->add('default/page', [
+        'title' => "Ändra användare",
+        'content' => "<p>Akronym: ".$acronym."</p><p>Id: ".$id."</p>".$form->getHTML()
+        ]);
+    
+
+}
+
 
 public function insertUser($acronym)
 {

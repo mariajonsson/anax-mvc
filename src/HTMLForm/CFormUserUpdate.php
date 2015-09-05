@@ -11,49 +11,60 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;
 
-
-
+    private $user;
+    private $id;
+    private $acronym; 
+    private $activedate;
+    private $created;
+    
     /**
      * Constructor
      *
      */
-    public function __construct($user)
+    public function __construct($id=null, $acronym='',$name='',$email='', $activedate=null, $created=null)
     {
+	$activecheck = ($activedate == null) ? false : true;
+        
         parent::__construct([], [
-            'acronym' => [
-                'type'        => 'text',
-                'label'       => 'Akronym',
-                'required'    => true,
-                'validation'  => ['not_empty'],
-            ],
+            
             'name' => [
                 'type'        => 'text',
                 'label'       => 'Namn',
                 'required'    => true,
                 'validation'  => ['not_empty'],
+                'value'       => $name,
             ],
             'email' => [
                 'type'        => 'text',
                 'label'       => 'E-post',
                 'required'    => true,
                 'validation'  => ['not_empty', 'email_adress'],
+                'value'       => $email,
             ],
             
             'active' => [
             	'type'        => 'checkbox',
             	'label'       => 'Aktivera',
-            	'checked'     => false,
+            	'checked'     => $activecheck,
             ],  
             
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmit'],
+                'value'     => 'Spara',
             ],
-            'submit-fail' => [
+            'submit-delete' => [
                 'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFail'],
+                'callback'  => [$this, 'callbackSubmitDelete'],
+                'value'     => 'Radera användare',
             ],
         ]);
+        
+        $this->id = $id;
+        $this->acronym = $acronym;
+        $this->activedate = $activedate;
+        $this->created = $created;
+        
     }
 
 
@@ -79,11 +90,17 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
     {
     	
         $now = gmdate('Y-m-d H:i:s');
-        $active = !empty($_POST['active'])?$now:null;
+        
+        if ($this->activedate == null && !empty($_POST['active'])) {
+	    $this->activedate = $now;
+        }
+        else if ($this->activedate != null && empty($_POST['active'])) {
+	    $this->activedate = null;
+        }
 
-	$this->newuser = new \Anax\Users\User();
-        $this->newuser->setDI($this->di);
-        $saved = $this->newuser->save(array('acronym' => $this->Value('acronym'), 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'created' => $now, 'updated' => $now, 'deleted' => null, 'active' => $active));
+	$this->user = new \Anax\Users\User();
+        $this->user->setDI($this->di);
+        $saved = $this->user->save(array('id' => $this->id, 'acronym' => $this->acronym, 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'created' => $this->created, 'updated' => $now, 'deleted' => null, 'active' => $this->activedate));
     
        // $this->saveInSession = true;
         
@@ -100,9 +117,14 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
      * Callback for submit-button.
      *
      */
-    public function callbackSubmitFail()
+    public function callbackSubmitDelete()
     {
-        $this->AddOutput("<p><i>DoSubmitFail(): Form was submitted but I failed to process/save/validate it</i></p>");
+    
+        $this->user = new \Anax\Users\User();
+        $this->user->setDI($this->di);
+        
+        $this->user->delete($this->id);
+        $this->redirectTo('users');
         return false;
     }
 
@@ -114,7 +136,7 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
      */
     public function callbackSuccess()
     {
-         $this->redirectTo('users/id/' . $this->newuser->getProperties()['id']);
+         $this->redirectTo('users/id/' . $this->user->getProperties()['id']);
     }
 
 

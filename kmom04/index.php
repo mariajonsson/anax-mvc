@@ -21,7 +21,7 @@ $di->set('CommentController', function() use ($di) {
 });
 $di->setShared('db', function() {
     $db = new \Mos\Database\CDatabaseBasic();
-    $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql_bth.php');
+    $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
     $db->connect();
     return $db;
 });
