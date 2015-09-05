@@ -15,13 +15,12 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
     private $id;
     private $acronym; 
     private $activedate;
-    private $created;
     
     /**
      * Constructor
      *
      */
-    public function __construct($id=null, $acronym='',$name='',$email='', $activedate=null, $created=null)
+    public function __construct($id=null, $acronym='',$name='',$email='', $activedate=null)
     {
 	$activecheck = ($activedate == null) ? false : true;
         
@@ -56,14 +55,13 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
             'submit-delete' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitDelete'],
-                'value'     => 'Radera användare',
+                'value'     => 'Ta bort',
             ],
         ]);
         
         $this->id = $id;
         $this->acronym = $acronym;
         $this->activedate = $activedate;
-        $this->created = $created;
         
     }
 
@@ -100,7 +98,7 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
 
 	$this->user = new \Anax\Users\User();
         $this->user->setDI($this->di);
-        $saved = $this->user->save(array('id' => $this->id, 'acronym' => $this->acronym, 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'created' => $this->created, 'updated' => $now, 'deleted' => null, 'active' => $this->activedate));
+        $saved = $this->user->save(array('id' => $this->id, 'acronym' => $this->acronym, 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'updated' => $now, 'deleted' => null, 'active' => $this->activedate));
     
        // $this->saveInSession = true;
         
@@ -120,11 +118,10 @@ class CFormUserUpdate extends \Mos\HTMLForm\CForm
     public function callbackSubmitDelete()
     {
     
-        $this->user = new \Anax\Users\User();
-        $this->user->setDI($this->di);
+        //$this->user = new \Anax\Users\User();
+        //$this->user->setDI($this->di);
         
-        $this->user->delete($this->id);
-        $this->redirectTo('users');
+        $this->redirectTo('users/soft-delete/' . $this->id);
         return false;
     }
 

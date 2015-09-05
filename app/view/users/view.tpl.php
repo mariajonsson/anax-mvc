@@ -1,20 +1,44 @@
-<h1><?=$user->getProperties()['name']?></h1>
+<h1>Användarinfo</h1>
+<p>
+<?php if ($user->getProperties()['deleted'] != null) : ?>
+Den här användaren är borttagen och kan inte redigeras. Gå till <a 
+href="<?=$this->di->get('url')->create('users/discarded')?>">papperskorgen</a> 
+för att återställa användaren eller för att radera användaren permanent.
+<?php endif; ?>
+</p>
+<?php 
+    $class = "";
+    if ($user->getProperties()['deleted'] != null) {
+      $faclass = "fa fa-user-times";
+      $status = "Borttagen";
+      $date = $user->getProperties()['deleted'];
+    }
+    elseif ($user->getProperties()['active'] == null) {
+      $faclass = "fa fa-user";
+      $status = "Inaktiv";
+      $date = "";
+    }
+    else {
+      $faclass = "fa fa-user";
+      $status = "Aktiverad";
+      $date = $user->getProperties()['active'];
+    } 
+    ?>
 
-<table>
-  <tbody>
-    <tr><th>Id</th><th>Akronym</th><th>Namn</th><th>Epost</th><th>Aktiverad</th><th>Skapad</th><th>Uppdaterad</th><th></th><th></th></tr>
-    <tr>
-    <td><?=$user->getProperties()['id']?></td>
-    <td><?=$user->getProperties()['acronym']?></td>
-    <td><?=$user->getProperties()['name']?></td>
-    <td><?=$user->getProperties()['email']?></td>
-    <td><?=$user->getProperties()['active']?></td>
-    <td><?=$user->getProperties()['created']?></td>
-    <td><?=$user->getProperties()['updated']?></td>
-    <td><a href="<?=$this->url->create('users/update').'/'.$user->getProperties()['id']?>">Ändra</a></td>
-    <td><a href="<?=$this->url->create('users/delete').'/'.$user->getProperties()['id']?>">Ta bort</a></td>
-    </tr>
-  </tbody>
-</table>
- 
-<p><a href='<?=$this->url->create('')?>'>Home</a></p>
+<h4><i class="<?=$faclass?>"></i> <?=$user->getProperties()['acronym']?> 
+(id <?=$user->getProperties()['id']?>)</h4>
+<p><em>Namn: <?=$user->getProperties()['name']?></em>
+<br><?=$user->getProperties()['email']?></p>
+<p><?=$status?> <?=$date?>
+<br>Skapades <?=$user->getProperties()['created']?>
+<br><?=isset($user->getProperties()['updated'])?"Uppdaterad 
+".$user->getProperties ( ) [ 'updated' ]:'';?></p>
+<p>
+<?php if ($user->getProperties()['deleted'] == null) : ?>
+    <a 
+href="<?=$this->url->create('users/update').'/'.$user->getProperties()['id']?>" 
+title='Ändra'><i class="fa fa-pencil"></i> Redigera användare
+</a>
+<?php endif; ?>
+</p>
+

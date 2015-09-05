@@ -464,6 +464,7 @@ body {
 }
 a {
   color: #088D00;
+  text-decoration: none;
 }
 output {
   color: #845D23;
@@ -471,6 +472,10 @@ output {
   padding: 15px;
   width: 600px;
   display: inline-block;
+}
+td,
+th {
+  padding: 8px;
 }
 .z-normal {
   position: static;
@@ -723,6 +728,16 @@ output {
   body {
     font: 100.01%/1.375 Arial, sans-serif;
   }
+}
+td,
+th {
+  padding: 2px 9px 2px 9px;
+}
+.user-deleted {
+  color: #000000;
+}
+.user-inactive {
+  color: #ccc;
 }
 #navbar {
   margin-bottom: 36px;

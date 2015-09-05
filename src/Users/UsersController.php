@@ -29,12 +29,31 @@ public function listAction()
 {
  
     $all = $this->users->findAll();
+    
+    $addurl = $this->di->get('url')->create('users/add');
+    $deleteurl = $this->di->get('url')->create('users/discarded');
+    $activeurl = $this->di->get('url')->create('users/active');
+    $inactiveurl = $this->di->get('url')->create('users/inactive');
  
     $this->theme->setTitle("Användare");
     $this->views->add('users/list-all', [
         'users' => $all,
         'title' => "Alla användare",
-    ]);
+    ], 'main');
+    $this->views->add('default/page', [
+        'title' => " ",
+        'content' => "<h4>Administration</h4> ",
+        'links' => array(
+		    ['text' => '<i class="fa fa-user-plus fa-fw"></i> Lägg till 
+användare', 'href' => $addurl], 
+		    ['text' => '<i class="fa fa-user-times fa-fw 
+user-deleted"></i> Administrera borttagna användare', 'href' => $deleteurl],
+		    ['text' => '<i class="fa fa-user fa-fw"></i> Se aktiva 
+användare', 'href' => $activeurl],
+		    ['text' => '<i class="fa fa-user fa-fw user-inactive"></i> 
+Se inaktiva användare', 'href' => $inactiveurl],
+		    )
+    ], 'sidebar');
 }
 
 /**
@@ -106,10 +125,11 @@ public function updateAction($id = null)
     $status = $form->check();
     
   
-    $this->di->theme->setTitle("Ändra användare");
+    $this->di->theme->setTitle("Redigera användare");
     $this->di->views->add('default/page', [
-        'title' => "Ändra användare",
-        'content' => "<p>Akronym: ".$acronym."</p><p>Id: ".$id."</p>".$form->getHTML()
+        'title' => "Redigera användare",
+        'content' => "<h4>".$user->getProperties()['acronym']." 
+(id ".$user->getProperties()['id'].")</h4>".$form->getHTML()
         ]);
     
 
@@ -149,6 +169,44 @@ public function deleteAction($id = null)
     $url = $this->url->create('users');
     $this->response->redirect($url);
 }
+
+
+/**
+ * Delete (soft) user.
+ *
+ * @param integer $id of user to delete.
+ *
+ * @return void
+ */
+public function activateAction($id = null,$route1=null,$route2=null)
+{
+    if (!isset($id)) {
+        die("Missing id");
+    }
+    
+
+    
+    $route2 = isset($route2) ? "/".$route2:null;
+ 
+    $now = gmdate('Y-m-d H:i:s');
+ 
+    $user = $this->users->find($id);
+    
+    if ($user->deleted != null) {
+      $user->deleted = null;
+    }
+    elseif ($user->active == null) { 
+      $user->active = $now;
+    }
+    else {
+      $user->active = null;
+    }
+    $user->save();
+ 
+    $url = $this->url->create($route1.$route2);
+    $this->response->redirect($url);
+}
+
 
 /**
  * Delete (soft) user.
@@ -190,7 +248,8 @@ public function activeAction()
     $this->views->add('users/list-all', [
         'users' => $all,
         'title' => "Aktiva användare",
-    ]);
+    ], 'main');
+
 }
 
 
@@ -205,6 +264,19 @@ public function inactiveAction()
     $this->views->add('users/list-all', [
         'users' => $all,
         'title' => "Inaktiva användare",
+    ]);
+}
+
+public function discardedAction()
+{
+    $all = $this->users->query()
+        ->where('deleted is NOT NULL')
+        ->execute();
+ 
+    $this->theme->setTitle("Papperskorgen");
+    $this->views->add('users/list-all', [
+        'users' => $all,
+        'title' => "Papperskorgen",
     ]);
 }
 }
