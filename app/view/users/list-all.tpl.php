@@ -47,7 +47,3 @@ href="<?=$this->url->create('users/soft-delete').'/'.$user->getProperties()['id'
     <?php endforeach; ?>
   </tbody>
 </table>
- 
-
- 
-<p><a href='<?=$this->url->create('')?>'>Home</a></p>

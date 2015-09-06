@@ -48,11 +48,9 @@ class CFormUserAdd extends \Mos\HTMLForm\CForm
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmit'],
+                'value'     => 'Spara',
             ],
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFail'],
-            ],
+            
         ]);
     }
 

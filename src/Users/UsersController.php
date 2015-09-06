@@ -30,30 +30,12 @@ public function listAction()
  
     $all = $this->users->findAll();
     
-    $addurl = $this->di->get('url')->create('users/add');
-    $deleteurl = $this->di->get('url')->create('users/discarded');
-    $activeurl = $this->di->get('url')->create('users/active');
-    $inactiveurl = $this->di->get('url')->create('users/inactive');
- 
     $this->theme->setTitle("Användare");
     $this->views->add('users/list-all', [
         'users' => $all,
         'title' => "Alla användare",
     ], 'main');
-    $this->views->add('default/page', [
-        'title' => " ",
-        'content' => "<h4>Administration</h4> ",
-        'links' => array(
-		    ['text' => '<i class="fa fa-user-plus fa-fw"></i> Lägg till 
-användare', 'href' => $addurl], 
-		    ['text' => '<i class="fa fa-user-times fa-fw 
-user-deleted"></i> Administrera borttagna användare', 'href' => $deleteurl],
-		    ['text' => '<i class="fa fa-user fa-fw"></i> Se aktiva 
-användare', 'href' => $activeurl],
-		    ['text' => '<i class="fa fa-user fa-fw user-inactive"></i> 
-Se inaktiva användare', 'href' => $inactiveurl],
-		    )
-    ], 'sidebar');
+    $this->views->add('users/adminmenu', [], 'sidebar');
 }
 
 /**
@@ -70,7 +52,8 @@ public function idAction($id = null)
     $this->theme->setTitle("Användare");
     $this->views->add('users/view', [
         'user' => $user,
-    ]);
+    ], 'main');
+    $this->views->add('users/adminmenu', [], 'sidebar');
 }
 
 /**
@@ -88,12 +71,23 @@ public function addAction($acronym = null)
     $form->setDI($this->di);
     $status = $form->check();
     
+    $info = $this->di->fileContent->get('users-addinfo.md');
+    $info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
   
     $this->di->theme->setTitle("Lägg till användare");
     $this->di->views->add('default/page', [
         'title' => "Lägg till användare",
-        'content' => $form->getHTML()
-        ]);
+        'content' => $form->getHTML(), 
+        
+        ], 'main');
+    $this->views->add('theme/info', [
+	'content' => $info,
+	'class'   => 'user-instructions',
+	'links'   => array(
+		      ['text' => 'Till huvudmeny', 
+		       'href' => $this->url->create('users')]
+        ),
+     ], 'sidebar');
     
 
 }
@@ -124,26 +118,39 @@ public function updateAction($id = null)
     $form->setDI($this->di);
     $status = $form->check();
     
-  
+    $info = $this->di->fileContent->get('users-editinfo.md');
+    $info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
+    
     $this->di->theme->setTitle("Redigera användare");
     $this->di->views->add('default/page', [
         'title' => "Redigera användare",
         'content' => "<h4>".$user->getProperties()['acronym']." 
 (id ".$user->getProperties()['id'].")</h4>".$form->getHTML()
         ]);
+    $this->views->add('theme/info', [
+	'content' => $info,
+	'class'   => 'user-instructions',
+	'links'   => array(
+		      ['text' => 'Till huvudmeny', 
+		       'href' => $this->url->create('users')]),
+      ], 'sidebar');
     
 
 }
 
 
-public function insertUser($acronym)
+public function insertUserAction($acronym, $email=null, $name=null)
 {
+
+    if (!isset($acronym)) {
+        die("Missing acronym");
+    }
     $now = gmdate('Y-m-d H:i:s');
 
     $this->users->save([
         'acronym' => $acronym,
-        'email' => $acronym . '@mail.se',
-        'name' => 'Mr/Mrs ' . $acronym,
+        'email' => $email,
+        'name' => $acronym,
         'password' => password_hash($acronym, PASSWORD_DEFAULT),
         'created' => $now,
         'active' => $now,
@@ -184,7 +191,7 @@ public function activateAction($id = null,$route1=null,$route2=null)
         die("Missing id");
     }
     
-
+    $route1 = isset($route1) ? $route1:'users';
     
     $route2 = isset($route2) ? "/".$route2:null;
  
@@ -249,6 +256,7 @@ public function activeAction()
         'users' => $all,
         'title' => "Aktiva användare",
     ], 'main');
+    $this->views->add('users/adminmenu', [], 'sidebar');
 
 }
 
@@ -264,7 +272,8 @@ public function inactiveAction()
     $this->views->add('users/list-all', [
         'users' => $all,
         'title' => "Inaktiva användare",
-    ]);
+    ], 'main');
+    $this->views->add('users/adminmenu', [], 'sidebar');
 }
 
 public function discardedAction()
@@ -274,9 +283,21 @@ public function discardedAction()
         ->execute();
  
     $this->theme->setTitle("Papperskorgen");
-    $this->views->add('users/list-all', [
+    $this->views->add('users/list-deleted', [
         'users' => $all,
         'title' => "Papperskorgen",
-    ]);
+    ], 'main');
+    $this->views->add('users/adminmenu', [], 'sidebar');
 }
+
+public function resetUsersAction()
+{
+    
+    $this->theme->setTitle("Återställ databasen");
+    $this->views->add('users/reset-users', [
+        'title' => "Återställ databas",
+    ], 'main');
+    $this->views->add('users/adminmenu', [], 'sidebar');
+}
+
 }

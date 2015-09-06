@@ -739,6 +739,13 @@ th {
 .user-inactive {
   color: #ccc;
 }
+.user-instructions {
+  color: #666;
+  padding: 1.5em;
+}
+.user-instructions li {
+  list-style-type: square;
+}
 #navbar {
   margin-bottom: 36px;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -805,7 +812,7 @@ fieldset {
   padding: 0px;
 }
 fieldset > p {
-  margin-bottom: -12px;
+  margin-bottom: 4px;
 }
 label {
   font-size: 0.8em;
@@ -884,6 +891,9 @@ p.buttons {
 }
 .dark-blue {
   color: #184A6F;
+}
+.dark-red {
+  color: #A4002C;
 }
 .bright body {
   background-color: #FFF;

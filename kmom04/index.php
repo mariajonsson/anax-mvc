@@ -203,6 +203,12 @@ $app->router->add('setup', function() use ($app) {
         $now,
         $now
      ]);
+     
+     $app->dispatcher->forward([
+        'controller' => 'users',
+        'action'     => 'list',
+        //'params'     => [],
+    ]);
 });
 
 

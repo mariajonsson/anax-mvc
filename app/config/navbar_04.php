@@ -100,7 +100,7 @@ return [
                     // This is a menu item of the submenu
                     'setup'  => [
                         'text'  => 'Återställ databasen',
-                        'url'   => $this->di->get('url')->asset('setup'),
+                        'url'   => $this->di->get('url')->asset('users/reset-users'),
                         'title' => 'Återställ databasen till sitt ursprungliga skick',
                     ],
                 ],
