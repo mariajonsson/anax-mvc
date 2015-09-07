@@ -40,9 +40,9 @@ return [
         // This is a menu item
         'comment' => [
             'text'  =>'Kommentarer',
-            'url'   => $this->di->get('url')->create('comment'),
+            'url'   => $this->di->get('url')->create('comments'),
             'title' => 'Lämna kommentarer',
-            'mark-if-parent-of' => 'comment',
+            'mark-if-parent-of' => 'comments',
         ],
         
         // This is a menu item

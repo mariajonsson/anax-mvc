@@ -5,7 +5,9 @@
 <?php if (is_array($comments)) : ?>
 <?php $comments = array_reverse($comments) ?>
 <?php foreach ($comments as $id => $comment) : ?>
+<?php $id = (is_object($comment)) ? $comment->id : $id; ?>
 <?php $comment = (is_object($comment)) ? get_object_vars($comment) : $comment; ?> 
+ 
 <div class='comment'>
 <div class='comment-id'>
 <a href='<?=$this->url->create('comment/edit/'.$pagekey.'/'.$id.'/'.$redirect)?>'>#<?=$id?></a> <img src='<?=$comment['gravatar']?>?s=40'>

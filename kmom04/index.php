@@ -14,8 +14,8 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_04.php');
 
 
-$di->set('CommentController', function() use ($di) {
-    $controller = new Phpmvc\Comment\CommentController();
+$di->set('CommentsController', function() use ($di) {
+    $controller = new Phpmvc\Comment\CommentsController();
     $controller->setDI($di);
     return $controller;
 });
@@ -56,7 +56,7 @@ $app->router->add('', function() use ($app) {
     
 
     $app->dispatcher->forward([
-        'controller' => 'comment',
+        'controller' => 'comments',
         'action'     => 'view',
         'params'     => ['me-page', $formvisibility,''],
     ]);
@@ -119,7 +119,7 @@ $app->router->add('dice/roll', function() use ($app) {
 });
 
 //Comments
-$app->router->add('comment', function() use ($app) {
+$app->router->add('comments', function() use ($app) {
 		
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
@@ -127,7 +127,7 @@ $app->router->add('comment', function() use ($app) {
     $formvisibility = $app->request->getPost('form');
 
     $app->dispatcher->forward([
-        'controller' => 'comment',
+        'controller' => 'comments',
         'action'     => 'view',
         'params'     => ['comment-page', $formvisibility,'comment'],
     ]);
@@ -250,11 +250,24 @@ $app->router->add('setup-comment', function() use ($app) {
         null,
         'http://www.gravatar.com/avatar/' . md5(strtolower(trim('admin@dbwebb.se'))) . '.jpg'
     ]);
+    
+        $app->db->execute([
+        'Hej!',
+        'admin@dbwebb.se',
+        'Administrator',
+        'me-page',
+        $now,
+        '111.111.11',
+        null,
+        'http://www.gravatar.com/avatar/' . md5(strtolower(trim('admin@dbwebb.se'))) . '.jpg'
+    ]);
+    
+    
      $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
      $formvisibility = $app->request->getPost('form');
      $app->dispatcher->forward([
-        'controller' => 'comment',
+        'controller' => 'comments',
         'action'     => 'view',
         'params'     => ['comment-page', $formvisibility,'comment'],
     ]);
