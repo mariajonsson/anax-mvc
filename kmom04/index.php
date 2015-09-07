@@ -211,7 +211,54 @@ $app->router->add('setup', function() use ($app) {
     ]);
 });
 
-
+$app->router->add('setup-comment', function() use ($app) {
+ 
+    $app->db->setVerbose();
+ 
+    $app->db->dropTableIfExists('comments')->execute();
+ 
+    $app->db->createTable(
+        'comments',
+        [
+            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
+            'content' => ['text', 'not null'],
+            'mail'   => ['varchar(80)'],
+            'name'    => ['varchar(80)'],
+            'pagekey' => ['varchar(80)'],
+            'timestamp' => ['datetime'],
+            'ip'      => ['varchar(80)'],
+            'web'     => ['varchar(200)'],
+            'gravatar' => ['varchar(200)']
+            
+        ]
+    )->execute();
+    
+    $app->db->insert(
+        'comments',
+        ['content', 'mail', 'name', 'pagekey', 'timestamp', 'ip', 'web', 'gravatar']
+    );
+ 
+    $now = gmdate('Y-m-d H:i:s');
+ 
+    $app->db->execute([
+        'En första kommentar',
+        'admin@dbwebb.se',
+        'Administrator',
+        'comment-page',
+        $now,
+        '111.111.11',
+        null,
+        'http://www.gravatar.com/avatar/' . md5(strtolower(trim('admin@dbwebb.se'))) . '.jpg'
+    ]);
+     $app->theme->setTitle("Kommentarer");
+    $app->views->add('comment/index');
+     $formvisibility = $app->request->getPost('form');
+     $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+        'params'     => ['comment-page', $formvisibility,'comment'],
+    ]);
+});
  
 $app->router->handle();
 $app->theme->render();
