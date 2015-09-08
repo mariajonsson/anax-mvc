@@ -120,16 +120,17 @@ $app->router->add('dice/roll', function() use ($app) {
 
 //Comments
 $app->router->add('comments', function() use ($app) {
-		
+
+    $formvisibility = $app->request->getPost('form');
+    
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
-    
-    $formvisibility = $app->request->getPost('form');
+        
 
     $app->dispatcher->forward([
         'controller' => 'comments',
         'action'     => 'view',
-        'params'     => ['comment-page', $formvisibility,'comment'],
+        'params'     => ['comment-page', $formvisibility,'comments'],
     ]);
 
 });

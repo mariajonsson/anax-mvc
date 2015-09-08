@@ -45,7 +45,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
             'web' => [
             	'type'        => 'text',
             	'label'       => 'Hemsida',
-            	'validation'  => ['not_empty', 'http_adress'],
+            	'validation'  => ['not_empty'],
             ],  
             
             'submit' => [
@@ -125,6 +125,6 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
     public function callbackFail()
     {
         $this->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
-        $this->redirectTo();
+        //$this->redirectTo();
     }
 }
