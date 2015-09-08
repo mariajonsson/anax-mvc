@@ -23,7 +23,7 @@ return [
     'views' => [
         ['region' => 'header', 'template' => 'theme/header', 'data' => [
 	    'siteTitle' => "phpmvc",
-            'siteTagline' => "Tema för Anax-MVC",], 'sort' => -1],
+            'siteTagline' => "kurs i PHP-programmering och MVC-ramverk",], 'sort' => -1],
         ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
 		    [
         'region' => 'navbar', 
