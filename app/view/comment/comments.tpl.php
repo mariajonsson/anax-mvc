@@ -1,4 +1,4 @@
-
+<?php $controller = isset($controller) ? $controller : 'comment'; ?>
 <div class='comments'>
 <!--<pre><?php echo var_dump($comments); ?></pre>-->
 <h3>Kommentarer</h3>
@@ -10,7 +10,7 @@
  
 <div class='comment'>
 <div class='comment-id'>
-<a href='<?=$this->url->create('comment/edit/'.$pagekey.'/'.$id.'/'.$redirect)?>'>#<?=$id?></a> <img src='<?=$comment['gravatar']?>?s=40'>
+<a href='<?=$this->url->create($controller .'/edit/'.$pagekey.'/'.$id.'/'.$redirect)?>'>#<?=$id?></a> <img src='<?=$comment['gravatar']?>?s=40'>
 </div>
 <div class='comment-content'>
 <p class='comment-header'><a href='mailto:<?=$comment['mail']?>' class='comment-name'><?=$comment['name']?></a> skrev för 
