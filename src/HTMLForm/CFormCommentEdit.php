@@ -11,19 +11,22 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;
 
-
+    private $id; 
+    private $pagekey;
+    private $redirect;
 
     /**
      * Constructor
      *
      */
-    public function __construct()
+    public function __construct($id, $content, $name, $web, $mail, $pagekey, $redirect)
     {
         parent::__construct([], [
         	
         	'content' => [
                 'type'        => 'textarea',
                 'label'       => 'Kommentar',
+                'value'       =>  $content,
                 'required'    => true,
                 'validation'  => ['not_empty'],
             ],
@@ -31,6 +34,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
             'name' => [
                 'type'        => 'text',
                 'label'       => 'Namn',
+                'value'       =>  $name,
                 'required'    => true,
                 'validation'  => ['not_empty'],
             ],
@@ -38,6 +42,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
             'mail' => [
                 'type'        => 'text',
                 'label'       => 'E-post',
+                'value'       =>  $mail,
                 'required'    => true,
                 'validation'  => ['not_empty', 'email_adress'],
             ],
@@ -45,7 +50,8 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
             'web' => [
             	'type'        => 'text',
             	'label'       => 'Hemsida',
-            	'validation'  => ['not_empty'],
+            	'value'       =>  $web,
+            	//'validation'  => ['not_empty'],
             ],  
             
             'submit' => [
@@ -55,6 +61,10 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
             ],
             
         ]);
+        
+        $this->id = $id;
+        $this->pagekey = $pagekey;
+        $this->redirect = $redirect;
     }
 
 
@@ -78,14 +88,14 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
      */
     public function callbackSubmit()
     {
-    	
+
         $now = gmdate('Y-m-d H:i:s');
         
-	$this->newcomment = new \Anax\Comment\Comments();
-        $this->newcomment->setDI($this->di);
-        $saved = $this->newcomment->save(array('content' => $this->Value('content'), 'email' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => 'test', 'timestamp' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
+	$this->comment = new \Anax\Comments\Comments();
+        $this->comment->setDI($this->di);
+        $saved = $this->comment->save(array('id' => $this->id, 'content' => $this->Value('content'), 'mail' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => $this->pagekey, 'timestamp' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
     
-       // $this->saveInSession = true;
+	//$this->saveInSession = true;
         
         if($saved) 
         {
@@ -114,7 +124,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
      */
     public function callbackSuccess()
     {
-         $this->redirectTo('users/id/' . $this->newuser->getProperties()['id']);
+         $this->redirectTo($this->redirect);
     }
 
 
@@ -125,6 +135,6 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
     public function callbackFail()
     {
         $this->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
-        //$this->redirectTo();
+        //$this->redirectTo($this->redirect);
     }
 }
