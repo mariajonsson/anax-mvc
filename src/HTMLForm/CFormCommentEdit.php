@@ -51,13 +51,19 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
             	'type'        => 'text',
             	'label'       => 'Hemsida',
             	'value'       =>  $web,
-            	//'validation'  => ['not_empty'],
+            	'validation'  => ['web_adress'],
             ],  
             
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmit'],
                 'value'     => 'Spara',
+            ],
+            
+            'delete' => [
+                'type'      => 'submit',
+                'callback'  => [$this, 'callbackDelete'],
+                'value'     => 'Radera',
             ],
             
         ]);
@@ -91,7 +97,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
 
         $now = gmdate('Y-m-d H:i:s');
         
-	$this->comment = new \Anax\Comments\Comments();
+        $this->comment = new \Anax\Comments\Comments();
         $this->comment->setDI($this->di);
         $saved = $this->comment->save(array('id' => $this->id, 'content' => $this->Value('content'), 'mail' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => $this->pagekey, 'timestamp' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
     
@@ -102,6 +108,21 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
         return true;
         }
         else return false;
+    }
+    
+    public function callbackDelete()
+    {
+    	$this->comment = new \Anax\Comments\Comments();
+        $this->comment->setDI($this->di);
+        
+        $deleted = $this->comment->delete($this->id);
+        
+        if($deleted) 
+        {
+        return true;
+        }
+        else return false;
+    	
     }
 
 

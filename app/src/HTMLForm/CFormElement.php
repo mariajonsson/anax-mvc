@@ -519,9 +519,16 @@ EOD;
             ],
 
             'email_adress' => [
-                'message' => 'Must be an email adress.',
+                'message' => 'Måste innehålla en epostadress.',
                 'test' => function ($value) {
                     return preg_match('/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i', $value) === 1;
+                }
+            ],
+            
+            'web_adress' => [
+                'message' => 'Måste vara en url. Inled med http://, https:// eller ftp://',
+                'test' => function ($value) {
+                    return preg_match("/\b(?:(?:https?|ftp):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $value) === 1;
                 }
             ],
 
