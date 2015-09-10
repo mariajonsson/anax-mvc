@@ -25,7 +25,6 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
         	'content' => [
                 'type'        => 'textarea',
                 'label'       => 'Kommentar',
-                'value'       => $redirect,
                 'required'    => true,
                 'validation'  => ['not_empty'],
             ],
