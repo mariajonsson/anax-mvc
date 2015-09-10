@@ -25,6 +25,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
         	'content' => [
                 'type'        => 'textarea',
                 'label'       => 'Kommentar',
+                'value'       => $redirect,
                 'required'    => true,
                 'validation'  => ['not_empty'],
             ],
@@ -85,7 +86,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
     	
         $now = gmdate('Y-m-d H:i:s');
         
-	$this->newcomment = new \Anax\Comment\Comments();
+	$this->newcomment = new \Anax\Comments\Comments();
         $this->newcomment->setDI($this->di);
         $saved = $this->newcomment->save(array('content' => $this->Value('content'), 'mail' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => $this->pagekey, 'timestamp' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
     

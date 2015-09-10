@@ -125,7 +125,7 @@ $app->router->add('comments', function() use ($app) {
     
     $app->theme->setTitle("Kommentarer");
     $app->views->add('comment/index');
-        
+     
 
     $app->dispatcher->forward([
         'controller' => 'comments',
