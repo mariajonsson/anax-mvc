@@ -504,17 +504,17 @@ EOD;
             ],
 
             'not_empty' => [
-                'message' => 'Can not be empty.',
+                'message' => 'Får inte lämnas tomt.',
                 'test' => 'return $value != "";'
             ],
 
             'not_equal' => [
-                'message' => 'Value not valid.',
+                'message' => 'Ej giligt värde.',
                 'test' => 'return $value != $arg;'
             ],
 
             'numeric' => [
-                'message' => 'Must be numeric.',
+                'message' => 'Får bara innehålla siffror.',
                 'test' => 'return is_numeric($value);'
             ],
 
@@ -526,19 +526,19 @@ EOD;
             ],
             
             'web_adress' => [
-                'message' => 'Måste vara en url. Inled med http://, https:// eller ftp://',
+                'message' => 'Måste lämnas tomt eller bestå av en url. Inled med http://, https:// eller ftp://',
                 'test' => function ($value) {
-                    return preg_match("/\b(?:(?:https?|ftp):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $value) === 1;
+                    return preg_match("/(\b(?:(?:https?|ftp):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]|[\s]*)/i", $value) === 1;
                 }
             ],
 
             'match' => [
-                'message' => 'The field does not match.',
+                'message' => 'Fälten matchar ej.',
                 'test' => 'return $value == $form[$arg]["value"] ;'
             ],
               
             'must_accept' => [
-                'message' => 'You must accept this.',
+                'message' => 'Du måste acceptera.',
                 'test' => 'return $checked;'
             ],
 

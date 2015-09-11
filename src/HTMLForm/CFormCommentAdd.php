@@ -46,7 +46,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
             'web' => [
             	'type'        => 'text',
             	'label'       => 'Hemsida',
-            	//'validation'  => ['not_empty'],
+            	'validation'  => ['web_adress'],
             ],  
             
             'submit' => [
@@ -54,6 +54,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
                 'callback'  => [$this, 'callbackSubmit'],
                 'value'     => 'Spara',
             ],
+            
             
         ]);
         
