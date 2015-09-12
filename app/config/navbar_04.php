@@ -43,6 +43,20 @@ return [
             'url'   => $this->di->get('url')->create('comments'),
             'title' => 'Lämna kommentarer',
             'mark-if-parent-of' => 'comments',
+            
+            // Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+
+                'items' => [
+
+                    // This is a menu item of the submenu
+                    'setup-comment'  => [
+                        'text'  => 'Återställ kommentarer',
+                        'url'   => $this->di->get('url')->create('comments/setup'),
+                        'title' => 'Återställ kommentarer'
+                    ],     
+                 ],
+             ],
         ],
         
         // This is a menu item

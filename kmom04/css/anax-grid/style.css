@@ -746,6 +746,24 @@ th {
 .user-instructions li {
   list-style-type: square;
 }
+th {
+  text-align: left;
+}
+.th-id {
+  width: 15px;
+}
+.th-status {
+  width: 15px;
+}
+.th-user {
+  width: 110px;
+}
+.th-name {
+  width: 200px;
+}
+.ht-symbol {
+  width: 20px;
+}
 #navbar {
   margin-bottom: 36px;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;

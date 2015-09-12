@@ -1,9 +1,10 @@
 <h1><?=$title?></h1>
 
+<?php if (!empty($users)) : ?>
 <table>
   <tbody>
     
-<tr><th>id</th><th></th><th>användare</th><th>namn</th><th></th> 
+<tr><th class='th-id'>id</th><th class='th-status'></th><th class='th-user'>användare</th><th  class='th-name'>namn</th><th></th> 
 <th></th></tr>
     <?php foreach ($users as $user) : ?>
     <tr>
@@ -33,6 +34,11 @@ href="<?=$this->url->create('users/delete').'/'.$user->getProperties()['id'
   </tbody>
 </table>
 <p></p>
-<p>Klicka på ångra-symbolen <i class="fa fa-undo"></i> eller på 
+<div class='byline'>Klicka på ångra-symbolen <i class="fa fa-undo"></i> eller på 
 användarsymbolen för att flytta bort användaren från papperskorgen. Klicka på 
-raderasymbolen <i class="fa fa-ban"></i> för att radera permanent. </p>
+raderasymbolen <i class="fa fa-ban"></i> för att radera permanent. </div>
+
+<?php elseif (empty($users)) : ?>
+<p>Det finns inga borttagna användare att visa.</p>
+<?php endif; ?>
+

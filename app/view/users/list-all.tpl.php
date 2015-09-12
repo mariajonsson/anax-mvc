@@ -1,8 +1,10 @@
 <h1><?=$title?></h1>
+
+<?php if (!empty($users)) : ?>
 <table>
   <tbody>
     
-<tr><th>id</th><th></th><th>användare</th><th>namn</th><th></th></th></tr>
+<tr><th class='th-id'>id</th><th class='th-status'></th><th class='th-user'>användare</th><th class='th-name'>namn</th><th class='th-symbol'></th><th class='th-symbol'></th></tr>
     <?php foreach ($users as $user) : ?>
     <?php 
     $class = "";
@@ -47,3 +49,10 @@ href="<?=$this->url->create('users/soft-delete').'/'.$user->getProperties()['id'
     <?php endforeach; ?>
   </tbody>
 </table>
+<p></p>
+<div class='byline'>Klicka på användarakronymen för att se profilen. Klicka på 
+användarsymbolen för att aktivera eller inaktivera. Klicka på redigera-symbolen <i class="fa fa-pencil"></i> för att redigera. Klicka på papperskorgen <i class="fa fa-trash"></i> för att ta bort användaren. </div>
+
+<?php elseif (empty($users)) : ?>
+<p>Det finns inga användare att visa i den här kategorin.</p>
+<?php endif; ?>
