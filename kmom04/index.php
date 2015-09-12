@@ -72,6 +72,7 @@ $app->router->add('redovisning', function() use ($app) {
     $content = $app->fileContent->get('redovisning.md');
     $content .= $app->fileContent->get('redovisning02.md');
     $content .= $app->fileContent->get('redovisning03.md');
+    $content .= $app->fileContent->get('redovisning04.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
     
     $byline = $app->fileContent->get('byline.md');

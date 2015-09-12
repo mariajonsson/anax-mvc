@@ -34,7 +34,11 @@
 <?php if (!empty($comment['web'])) : ?>
 <?php $prefix = preg_match('/^[www]/', $comment['web']) ? 'http://' : '';?>
 <a href='<?=$prefix.$comment['web']?>' target='_new'>hemsida</a>
-<?php endif; ?> <?=$comment['ip']?></p>
+<?php endif; ?> <?=$comment['ip']?> 
+<?php if (!empty($comment['updated'])) : ?>
+Redigerades <?=$comment['updated']?>
+<?php endif; ?>
+</p>
 </div>
 </div>
 <div class='comment-divider'></div>

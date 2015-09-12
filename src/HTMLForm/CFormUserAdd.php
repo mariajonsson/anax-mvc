@@ -81,7 +81,7 @@ class CFormUserAdd extends \Mos\HTMLForm\CForm
 
 	$this->newuser = new \Anax\Users\User();
         $this->newuser->setDI($this->di);
-        $saved = $this->newuser->save(array('acronym' => $this->Value('acronym'), 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => 'test', 'created' => $now, 'updated' => $now, 'deleted' => null, 'active' => $active));
+        $saved = $this->newuser->save(array('acronym' => $this->Value('acronym'), 'email' => $this->Value('email'), 'name' => $this->Value('name'), 'password' => password_hash($this->Value('acronym'), PASSWORD_DEFAULT), 'created' => $now, 'updated' => $now, 'deleted' => null, 'active' => $active));
     
        // $this->saveInSession = true;
         

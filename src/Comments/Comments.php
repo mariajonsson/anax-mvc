@@ -41,16 +41,6 @@ class Comments extends \Anax\MVC\CDatabaseModel
     }
     }
     
-    /*
-    * Save an edited comment
-    *
-    */
-    
-     public function editComment($comment, $pagekey, $id)
-    {
-        $comments = $this->session->get('comments', []);
-        $comments[$pagekey][$id] = $comment;
-        $this->session->set('comments', $comments);
-    }
+
 
 }

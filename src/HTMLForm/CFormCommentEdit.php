@@ -103,7 +103,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
         
         $this->comment = new \Anax\Comments\Comments();
         $this->comment->setDI($this->di);
-        $saved = $this->comment->save(array('id' => $this->id, 'content' => $this->Value('content'), 'mail' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => $this->pagekey, 'timestamp' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
+        $saved = $this->comment->save(array('id' => $this->id, 'content' => $this->Value('content'), 'mail' => $this->Value('mail'), 'name' => $this->Value('name'), 'pagekey' => $this->pagekey, 'updated' => $now, 'ip' => $this->di->request->getServer('REMOTE_ADDR'), 'web' => $this->Value('web'), 'gravatar' => 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->Value('mail')))) . '.jpg'));
     
 	//$this->saveInSession = true;
         
