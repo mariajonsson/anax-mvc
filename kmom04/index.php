@@ -162,71 +162,26 @@ $app->router->add('users', function() use ($app) {
 
 $app->router->add('setup', function() use ($app) {
  
-    //$app->db->setVerbose();
- 
-    $app->db->dropTableIfExists('user')->execute();
- 
-    $app->db->createTable(
-        'user',
-        [
-            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
-            'acronym' => ['varchar(20)', 'unique', 'not null'],
-            'email' => ['varchar(80)'],
-            'name' => ['varchar(80)'],
-            'password' => ['varchar(255)'],
-            'created' => ['datetime'],
-            'updated' => ['datetime'],
-            'deleted' => ['datetime'],
-            'active' => ['datetime'],
-        ]
-    )->execute();
-    
-    $app->db->insert(
-        'user',
-        ['acronym', 'email', 'name', 'password', 'created', 'active']
-    );
- 
-    $now = gmdate('Y-m-d H:i:s');
- 
-    $app->db->execute([
-        'admin',
-        'admin@dbwebb.se',
-        'Administrator',
-        password_hash('admin', PASSWORD_DEFAULT),
-        $now,
-        $now
-    ]);
- 
-    $app->db->execute([
-        'doe',
-        'doe@dbwebb.se',
-        'John/Jane Doe',
-        password_hash('doe', PASSWORD_DEFAULT),
-        $now,
-        $now
-     ]);
-     
-         $app->db->execute([
-        'maria',
-        'choklad@post.utfors.se',
-        'Maria',
-        password_hash('maria', PASSWORD_DEFAULT),
-        $now,
-        null
-     ]);
-     
-     $app->dispatcher->forward([
-        'controller' => 'users',
-        'action'     => 'list',
-        //'params'     => [],
-    ]);
+    $app->theme->setTitle("Återställ databasen");
+    $app->views->add('users/reset-users', [
+        'title' => "Återställ databas",
+    ], 'main');
+    $app->views->add('users/adminmenu', [], 'sidebar');
 });
 
 
-$app->router->add('comments/setup', function() use ($app) {
+$app->router->add('setup-comments', function() use ($app) {
  
     $app->theme->setTitle("Återställ kommentarer");
     $app->views->add('comment/setup');
+    
+  
+});
+
+$app->router->add('delete-comments', function() use ($app) {
+ 
+    $app->theme->setTitle("Radera kommentarer");
+    $app->views->add('comment/delete');
     
   
 });

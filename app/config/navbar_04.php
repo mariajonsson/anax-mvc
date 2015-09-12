@@ -48,11 +48,18 @@ return [
             'submenu' => [
 
                 'items' => [
+                
+		    // This is a menu item of the submenu
+                    'delete-comments'  => [
+                        'text'  => 'Radera kommentarer',
+                        'url'   => $this->di->get('url')->create('delete-comments'),
+                        'title' => 'Radera alla kommentarer'
+                    ],
 
                     // This is a menu item of the submenu
                     'setup-comment'  => [
                         'text'  => 'Återställ kommentarer',
-                        'url'   => $this->di->get('url')->create('comments/setup'),
+                        'url'   => $this->di->get('url')->create('setup-comments'),
                         'title' => 'Återställ kommentarer'
                     ],     
                  ],
@@ -114,7 +121,7 @@ return [
                     // This is a menu item of the submenu
                     'setup'  => [
                         'text'  => 'Återställ databasen',
-                        'url'   => $this->di->get('url')->asset('users/reset-users'),
+                        'url'   => $this->di->get('url')->create('setup'),
                         'title' => 'Återställ databasen till sitt ursprungliga skick',
                     ],
                 ],

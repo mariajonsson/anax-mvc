@@ -292,12 +292,67 @@ public function discardedAction()
 
 public function resetUsersAction()
 {
+
+    //$this->db->setVerbose();
+ 
+    $this->db->dropTableIfExists('user')->execute();
+ 
+    $this->db->createTable(
+        'user',
+        [
+            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
+            'acronym' => ['varchar(20)', 'unique', 'not null'],
+            'email' => ['varchar(80)'],
+            'name' => ['varchar(80)'],
+            'password' => ['varchar(255)'],
+            'created' => ['datetime'],
+            'updated' => ['datetime'],
+            'deleted' => ['datetime'],
+            'active' => ['datetime'],
+        ]
+    )->execute();
     
-    $this->theme->setTitle("Återställ databasen");
-    $this->views->add('users/reset-users', [
-        'title' => "Återställ databas",
-    ], 'main');
-    $this->views->add('users/adminmenu', [], 'sidebar');
+    $this->db->insert(
+        'user',
+        ['acronym', 'email', 'name', 'password', 'created', 'active']
+    );
+ 
+    $now = date('Y-m-d H:i:s');
+ 
+    $this->db->execute([
+        'admin',
+        'admin@dbwebb.se',
+        'Administrator',
+        password_hash('admin', PASSWORD_DEFAULT),
+        $now,
+        $now
+    ]);
+ 
+    $this->db->execute([
+        'doe',
+        'doe@dbwebb.se',
+        'John/Jane Doe',
+        password_hash('doe', PASSWORD_DEFAULT),
+        $now,
+        $now
+     ]);
+     
+         $this->db->execute([
+        'maria',
+        'choklad@post.utfors.se',
+        'Maria',
+        password_hash('maria', PASSWORD_DEFAULT),
+        $now,
+        null
+     ]);
+     
+     $this->dispatcher->forward([
+        'controller' => 'users',
+        'action'     => 'list',
+        //'params'     => [],
+    ]);
+    
+    
 }
 
 }

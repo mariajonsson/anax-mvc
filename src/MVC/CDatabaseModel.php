@@ -167,6 +167,22 @@ public function delete($id)
 }
 
 /**
+ * Delete all rows
+ *
+ *
+ * @return boolean true or false if deleting went okey.
+ */
+public function deleteAll()
+{
+    $this->db->delete(
+        $this->getSource(),
+        '?'
+    );
+ 
+    return $this->db->execute([1]);
+}
+
+/**
  * Build a select-query.
  *
  * @param string $columns which columns to select.

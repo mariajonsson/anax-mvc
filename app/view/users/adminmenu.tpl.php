@@ -10,6 +10,6 @@ fa-user fa-fw user-inactive"></i> Se inaktiva användare</a>
 <br><a href="<?=$this->di->get('url')->create('users')?>"><i class="fa 
 fa-users fa-fw"></i> Se samtliga användare</a>
 
-<br><a href="<?=$this->di->get('url')->create('users/reset-users')?>"><i 
+<br><a href="<?=$this->di->get('url')->create('setup')?>"><i 
 class="fa 
 fa-database fa-fw"></i> Återställ databasen</a>
