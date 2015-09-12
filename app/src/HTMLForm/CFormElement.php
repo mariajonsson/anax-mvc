@@ -528,7 +528,9 @@ EOD;
             'web_adress' => [
                 'message' => 'Måste lämnas tomt eller bestå av en url. Inled med http://, https:// eller ftp://',
                 'test' => function ($value) {
-                    return preg_match("/(\b(?:(?:https?|ftp):\/\/)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]|[\s]*)/i", $value) === 1;
+		    if (!empty($value)) {
+                    return preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $value) === 1; }
+                    else return true;
                 }
             ],
 
