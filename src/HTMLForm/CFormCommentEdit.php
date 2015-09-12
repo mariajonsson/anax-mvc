@@ -59,6 +59,10 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
                 'callback'  => [$this, 'callbackSubmit'],
                 'value'     => 'Spara',
             ],
+            'reset' => [
+                'type'      => 'reset',
+                'value'     => 'Återställ',
+            ],
             
             'delete' => [
                 'type'      => 'submit',
@@ -95,7 +99,7 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
     public function callbackSubmit()
     {
 
-        $now = gmdate('Y-m-d H:i:s');
+        $now = date('Y-m-d H:i:s');
         
         $this->comment = new \Anax\Comments\Comments();
         $this->comment->setDI($this->di);
@@ -128,18 +132,6 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
 
 
     /**
-     * Callback for submit-button.
-     *
-     */
-    public function callbackSubmitFail()
-    {
-        $this->AddOutput("<p><i>DoSubmitFail(): Form was submitted but I failed to process/save/validate it</i></p>");
-        return false;
-    }
-
-
-
-    /**
      * Callback What to do if the form was submitted?
      *
      */
@@ -156,6 +148,6 @@ class CFormCommentEdit extends \Mos\HTMLForm\CForm
     public function callbackFail()
     {
         $this->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
-        //$this->redirectTo($this->redirect);
+        
     }
 }

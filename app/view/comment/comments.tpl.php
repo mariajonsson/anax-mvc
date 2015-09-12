@@ -14,7 +14,7 @@
 </div>
 <div class='comment-content'>
 <p class='comment-header'><a href='mailto:<?=$comment['mail']?>' class='comment-name'><?=$comment['name']?></a> skrev för 
-<?php $elapsedsec = (time()-$comment['timestamp']); ?>
+<?php $elapsedsec = (time()-strtotime($comment['timestamp'])); ?>
 <?php if (($elapsedsec) < 60): ?>
 <?=round($elapsedsec)?> s sedan
 <?php elseif (($elapsedsec/60) < 60): ?>
@@ -32,7 +32,8 @@
 <p><?=$comment['content']?></p>
 <p class='comment-footer'>
 <?php if (!empty($comment['web'])) : ?>
-<a href='<?=$comment['web']?>' target='_new'>hemsida</a>
+<?php $prefix = preg_match('/^[www]/', $comment['web']) ? 'http://' : '';?>
+<a href='<?=$prefix.$comment['web']?>' target='_new'>hemsida</a>
 <?php endif; ?> <?=$comment['ip']?></p>
 </div>
 </div>

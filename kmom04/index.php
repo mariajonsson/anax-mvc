@@ -205,6 +205,15 @@ $app->router->add('setup', function() use ($app) {
         $now
      ]);
      
+         $app->db->execute([
+        'maria',
+        'choklad@post.utfors.se',
+        'Maria',
+        password_hash('maria', PASSWORD_DEFAULT),
+        $now,
+        null
+     ]);
+     
      $app->dispatcher->forward([
         'controller' => 'users',
         'action'     => 'list',

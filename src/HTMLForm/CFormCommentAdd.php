@@ -54,7 +54,11 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
                 'callback'  => [$this, 'callbackSubmit'],
                 'value'     => 'Spara',
             ],
-            
+            'reset' => [
+                'type'      => 'reset',
+                //'callback'  => [$this, 'callbackReset'],
+                'value'     => 'Återställ',
+            ],
             
         ]);
         
@@ -84,7 +88,7 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
     public function callbackSubmit()
     {
     	
-        $now = gmdate('Y-m-d H:i:s');
+        $now = date('Y-m-d H:i:s');
         
 	$this->newcomment = new \Anax\Comments\Comments();
         $this->newcomment->setDI($this->di);
@@ -99,6 +103,14 @@ class CFormCommentAdd extends \Mos\HTMLForm\CForm
         else return false;
     }
 
+     /**
+     * Callback reset
+     *
+     */
+    public function callbackReset()
+    {
+         $this->redirectTo($this->redirect);
+    }
 
 
     /**
