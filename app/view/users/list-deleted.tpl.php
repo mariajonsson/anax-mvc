@@ -9,25 +9,13 @@
     <?php foreach ($users as $user) : ?>
     <tr>
     <td><?=$user->getProperties()['id']?></td>
-    <td><a 
-href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'
-/'.$this->request->getRoute()?> "  
-class="user-deleted"><i class="fa fa-user-times fa-fw 
-user-deleted"></i></a></td>
-    <td><a 
-href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>"  
-class="<?=$class?>"><?=$user->getProperties()['acronym']?></a></td>
+    <td><a href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'/'.$this->request->getRoute()?>" class="user-deleted"><i class="fa fa-user-times fa-fw user-deleted"></i></a></td>
+    <td><a href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>" class="<?=$class?>"><?=$user->getProperties()['acronym']?></a></td>
     <td><?=$user->getProperties()['name']?></td>
-    <td><a 
-href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'
-/'.$this->request->getRoute()?>" title='Aktivera'><i class="fa fa-undo"></i></a>
+    <td><a href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'/'.$this->request->getRoute()?>" title='Aktivera'><i class="fa fa-undo"></i></a>
     </td>
     <td>
-    <a 
-href="<?=$this->url->create('users/delete').'/'.$user->getProperties()['id'
-]?>" title='Ta bort permanent'><i class="fa fa-ban dark-red"></i>
-
-</a>
+    <a href="<?=$this->url->create('users/delete').'/'.$user->getProperties()['id']?>" title='Ta bort permanent'><i class="fa fa-ban dark-red"></i></a>
     </td>
     </tr>
     <?php endforeach; ?>

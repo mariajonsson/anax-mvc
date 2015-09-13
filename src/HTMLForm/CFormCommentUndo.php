@@ -21,9 +21,9 @@ class CFormCommentUndo extends \Mos\HTMLForm\CForm
     {
         parent::__construct([], [
         
-            'reset' => [
+            'regret' => [
                 'type'  => 'hidden',
-                'value' => 'reset',
+                'value' => 'regret',
             ],
  
             
@@ -60,7 +60,7 @@ class CFormCommentUndo extends \Mos\HTMLForm\CForm
      */
     public function callbackUndo()
     {
-	if ($this->Value('reset')=='reset') {
+	if ($this->Value('regret')=='regret') {
         return true;
         }
     }

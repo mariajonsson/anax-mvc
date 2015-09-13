@@ -20,28 +20,19 @@
       $faclass = "fa fa-user fa-fw";
       $class = "user-active";
     } ?>
-    <tr">
+    <tr>
     <td><?=$user->getProperties()['id']?></td>
-    <td><a 
-href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'
-/'.$this->request->getRoute()?> "  
-class="<?=$class?>"><i class="<?=$faclass." ".$class?>"></i></a></td>
-    <td><a 
-href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>"  
-class="<?=$class?>"><?=$user->getProperties()['acronym']?></a></td>
+    <td><a href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'/'.$this->request->getRoute()?>" class="<?=$class?>"><i class="<?=$faclass." ".$class?>"></i></a></td>
+    <td><a href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>" class="<?=$class?>"><?=$user->getProperties()['acronym']?></a></td>
     <td><?=$user->getProperties()['name']?></td>
     <td>
     <?php if ($user->getProperties()['deleted'] == null) : ?>
-    <a 
-href="<?=$this->url->create('users/update').'/'.$user->getProperties()['id']?>" 
-title='Ändra'><i class="fa fa-pencil"></i>
+    <a href="<?=$this->url->create('users/update').'/'.$user->getProperties()['id']?>" title='Ändra'><i class="fa fa-pencil"></i>
 </a><?php endif; ?>
     </td>
     <td>
     <?php if ($user->getProperties()['deleted'] == null) : ?>
-    <a 
-href="<?=$this->url->create('users/soft-delete').'/'.$user->getProperties()['id'
-]?>" title='Ta bort'><i class="fa fa-trash"></i>
+    <a href="<?=$this->url->create('users/soft-delete').'/'.$user->getProperties()['id']?>" title='Ta bort'><i class="fa fa-trash"></i>
 </a>
     <?php endif; ?>
     </td>
