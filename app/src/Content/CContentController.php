@@ -47,48 +47,38 @@ public function listAction()
  */
 public function idAction($id = null)
 {
-    $user = $this->users->find($id);
+    $post = $this->content->find($id);
  
-    $this->theme->setTitle("Användare");
+    $this->theme->setTitle("Innehåll");
     $this->views->add('users/view', [
-        'user' => $user,
+        'user' => $post,
     ], 'main');
-    $this->views->add('users/adminmenu', [], 'sidebar');
+    //$this->views->add('users/adminmenu', [], 'sidebar');
 }
 
 /**
- * Add new user.
+ * Add new content.
  *
- * @param string $acronym of user to add.
+ * 
  *
  * @return void
  */
-public function addAction($acronym = null)
+public function addAction()
 {
-
-    
-    $form = new \Anax\HTMLForm\CFormUserAdd();
+ 
+    $form = new \Anax\HTMLForm\CFormContentAdd();
     $form->setDI($this->di);
     $status = $form->check();
     
-    $info = $this->di->fileContent->get('users-addinfo.md');
-    $info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
+    //$info = $this->di->fileContent->get('users-addinfo.md');
+    //$info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
   
-    $this->di->theme->setTitle("Lägg till användare");
+    $this->di->theme->setTitle("Lägg till innehåll");
     $this->di->views->add('default/page', [
         'title' => "Lägg till användare",
         'content' => $form->getHTML(), 
         
         ], 'main');
-    $this->views->add('theme/info', [
-	'content' => $info,
-	'class'   => 'user-instructions',
-	'links'   => array(
-		      ['text' => 'Till huvudmeny', 
-		       'href' => $this->url->create('users')]
-        ),
-     ], 'sidebar');
-    
 
 }
 
@@ -817,15 +807,13 @@ public function setupContentAction()
         'content',
         [
             'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
+            'title' => ['varchar(100)', 'not null'],
             'slug' => ['varchar(100)', 'unique'],
             'url' => ['varchar(100)', 'unique'],
             'type' => ['varchar(80)'],
             'data' => ['text'],
             'filter' => ['varchar(80)'],
             'acronym' => ['varchar(20)'],
-            'email' => ['varchar(80)'],
-            'name' => ['varchar(80)'],
-            'password' => ['varchar(255)'],
             'created' => ['datetime'],
             'updated' => ['datetime'],
             'deleted' => ['datetime'],
