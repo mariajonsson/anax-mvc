@@ -32,6 +32,12 @@ $di->set('UsersController', function() use ($di) {
     return $controller;
 });
 
+$di->set('ContentController', function() use ($di) {
+    $controller = new \Meax\Content\ContentController();
+    $controller->setDI($di);
+    return $controller;
+});
+
 $di->set('form', '\Mos\HTMLForm\CForm');
 
 $app->session();
