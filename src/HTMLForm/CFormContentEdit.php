@@ -11,7 +11,8 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;
 
-    private $redirect;
+    private $id;
+    private $published;
 
     /**
      * Constructor
@@ -19,6 +20,7 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
      */
     public function __construct($id, $title, $url, $slug, $data, $acronym, $filter, $type, $published, $deleted)
     {
+    	$publcheck = ($published == null) ? false : true;
         parent::__construct([], [
         
 	    'title' => [
@@ -79,7 +81,7 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
             'published' => [
                 'type'        => 'checkbox',
                 'label'       => 'Publicera',
-                'checked'     => false,
+                'checked'     => $publcheck,
             ],
             
             'submit' => [
@@ -95,8 +97,8 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
             
         ]);
         
-
-        $this->redirect = $redirect;
+        $this->published = $published;
+        $this->id = $id;
     }
 
 
@@ -122,11 +124,16 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
     {
     	
         $now = date('Y-m-d H:i:s');
-        $published = !empty($_POST['published'])?$now:null;
+        if ($this->published == null && !empty($_POST['published'])) {
+	    $this->published = $now;
+        }
+        else if ($this->published != null && empty($_POST['published'])) {
+	    $this->published = null;
+        }
         
 	$content = new \Meax\Content\CContent();
         $content->setDI($this->di);
-        $saved = $content->save(array('title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'created' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $published));
+        $saved = $content->save(array('id' => $this->id, 'title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'created' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $this->published));
     
        // $this->saveInSession = true;
         

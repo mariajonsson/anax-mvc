@@ -1,42 +1,23 @@
-<?php $controller = isset($controller) ? $controller : 'comment'; ?>
-<div class='comments'>
-<!--<pre><?php echo var_dump($comments); ?></pre>-->
-<h3>Kommentarer</h3>
-<?php if (is_array($comments)) : ?>
-<?php /*$comments = array_reverse($comments)*/ ?>
-<?php foreach ($comments as $id => $comment) : ?>
-<?php $id = (is_object($comment)) ? $comment->id : $id; ?>
-<?php $comment = (is_object($comment)) ? get_object_vars($comment) : $comment; ?> 
+
+<div class='content'>
+<!--<pre><?php echo var_dump($content); ?></pre>-->
+<h3>Innehåll</h3>
+<?php if (is_array($content)) : ?>
+<?php /*$content = array_reverse($content)*/ ?>
+<?php foreach ($content as $id => $post) : ?>
+<?php $id = (is_object($post)) ? $post->id : $id; ?>
+<?php $post = (is_object($post)) ? get_object_vars($post) : $post; ?> 
  
 <div class='comment'>
 <div class='comment-id'>
-<a href='<?=$this->url->create($controller .'/edit/'.$pagekey.'/'.$id.'/'.$redirect)?>'>#<?=$id?></a> <img src='<?=$comment['gravatar']?>?s=40' alt='gravatar'>
 </div>
 <div class='comment-content'>
-<p class='comment-header'><a href='mailto:<?=$comment['mail']?>' class='comment-name'><?=$comment['name']?></a> skrev för 
-<?php $elapsedsec = (time()-strtotime($comment['timestamp'])); ?>
-<?php if (($elapsedsec) < 60): ?>
-<?=round($elapsedsec)?> s sedan
-<?php elseif (($elapsedsec/60) < 60): ?>
-<?=round($elapsedsec/60)?> minuter sedan
-<?php elseif (($elapsedsec/(60*60)) < 24): ?>
-<?=round($elapsedsec/(60*60))?> h sedan
-<?php elseif (($elapsedsec/(60*60*24)) < 7): ?>
-<?=round($elapsedsec/(60*60*24))?> dygn sedan
-<?php elseif (($elapsedsec/(60*60*24)) < 30) : ?>
-<?=round($elapsedsec/(60*60*24*7))?> veckor sedan
-<?php else : ?>
-<?=round($elapsedsec/(60*60*24*30))?> månader sedan
-<?php endif; ?>
-</p>
-<p><?=$comment['content']?></p>
+<p class='comment-header'><?=$post['title']?>
+<br><?=$post['published']?></p>
+<p><?=$post['data']?></p>
 <p class='comment-footer'>
-<?php if (!empty($comment['web'])) : ?>
-<?php $prefix = preg_match('/^[www]/', $comment['web']) ? 'http://' : '';?>
-<a href='<?=$prefix.$comment['web']?>' target='_blank'>hemsida</a>
-<?php endif; ?> <?=$comment['ip']?> 
-<?php if (!empty($comment['updated'])) : ?>
-Redigerades <?=$comment['updated']?>
+<?php if (!empty($post['updated'])) : ?>
+Redigerades <?=$post['updated']?>
 <?php endif; ?>
 </p>
 </div>
@@ -45,22 +26,10 @@ Redigerades <?=$comment['updated']?>
 <?php endforeach; ?>
 
 <?php endif; ?>
-<?php if (is_string($comments)) : ?>
+<?php if (is_string($content)) : ?>
 
-<p class='comment'><?=$comments?></p>
+<p class='comment'><?=$content?></p>
 
 <?php endif; ?>
 </div>
 
-
-
-// Put results into a list
-    if(isset($res[0])) {
-      $items = null;
-      foreach($res AS $key => $val) {
-      if (!isset($val->deleted)) {
-      $items .= "<li>{$val->TYPE} (" . (!$val->available ? 'inte ' : null) . "publicerad): " . htmlentities($val->title, null, 'UTF-8') . " (".($this->loggedin ? "<a href='edit.php?id={$val->id}'>editera</a>":"") ." <a href='" . $this->getUrlToContent($val) . "'>visa</a>) <span style='color:grey;font-style:italic'>Skapad av: ".$val->name."</span></li>\n";
-      }
-      }
-      return $items;
-    }

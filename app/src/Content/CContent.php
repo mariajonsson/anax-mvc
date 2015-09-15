@@ -3,10 +3,10 @@
 namespace Meax\Content;
  
 /**
- * Model for Comments.
+ * Model for Content.
  *
  */
-class CContent extends \Anax\MVC\CDatabaseModel
+class Content extends \Anax\MVC\CDatabaseModel
 {
 
 	
