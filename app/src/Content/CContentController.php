@@ -41,7 +41,7 @@ public function listAction()
 /**
  * List user with id.
  *
- * @param int $id of user to display
+ * @param int $id of content post to display
  *
  * @return void
  */
@@ -50,8 +50,8 @@ public function idAction($id = null)
     $post = $this->content->find($id);
  
     $this->theme->setTitle("Innehåll");
-    $this->views->add('users/view', [
-        'user' => $post,
+    $this->views->add('content/post', [
+        'content' => $post,
     ], 'main');
     //$this->views->add('users/adminmenu', [], 'sidebar');
 }
@@ -75,7 +75,7 @@ public function addAction()
   
     $this->di->theme->setTitle("Lägg till innehåll");
     $this->di->views->add('default/page', [
-        'title' => "Lägg till användare",
+        'title' => "Lägg till innehåll",
         'content' => $form->getHTML(), 
         
         ], 'main');
@@ -96,24 +96,27 @@ public function updateAction($id = null)
         die("Missing id");
     }
     
-    $user = $this->users->find($id);
-    $name = $user->getProperties()['name'];
-    $acronym = $user->getProperties()['acronym'];
-    $email = $user->getProperties()['email'];
-    $active = $user->getProperties()['active'];
-    $deleted = $user->getProperties()['deleted'];
-    $created = $user->getProperties()['created'];
+    $content = $this->content->find($id);
+    $title = $content->getProperties()['title'];
+    $url = $content->getProperties()['url'];
+    $slug = $content->getProperties()['slug'];
+    $data = $content->getProperties()['data'];
+    $acronym = $content->getProperties()['acronym'];
+    $filter = $content->getProperties()['filter'];
+    $type = $content->getProperties()['type'];
+    $deleted = $content->getProperties()['deleted'];
+    $published = $content->getProperties()['published'];
     
-    $form = new \Anax\HTMLForm\CFormUserUpdate($id, $acronym, $name, $email, $active, $created);
+    $form = new \Anax\HTMLForm\CFormUserUpdate($id, $title, $url, $slug, $data, $acronym, $filter, $type, $publihsed, $deleted);
     $form->setDI($this->di);
     $status = $form->check();
     
-    $info = $this->di->fileContent->get('users-editinfo.md');
-    $info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
+    //$info = $this->di->fileContent->get('users-editinfo.md');
+    //$info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
     
-    $this->di->theme->setTitle("Redigera användare");
+    $this->di->theme->setTitle("Redigera innehåll");
     $this->di->views->add('default/page', [
-        'title' => "Redigera användare",
+        'title' => "Redigera innehåll",
         'content' => "<h4>".$user->getProperties()['acronym']." 
 (id ".$user->getProperties()['id'].")</h4>".$form->getHTML()
         ]);
