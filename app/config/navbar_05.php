@@ -128,6 +128,61 @@ return [
             ],
         ],
         
+        // This is a menu item
+        'content' => [
+            'text'  =>'Innehåll',
+            'url'   => $this->di->get('url')->create('content'),
+            'title' => 'Innehåll (content)', 
+            'mark-if-parent-of' => 'content',
+            
+            // Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+
+                'items' => [
+
+                    // This is a menu item of the submenu
+                    'allcontent'  => [
+                        'text'  => 'Allt innehåll',
+                        'url'   => $this->di->get('url')->create('content/list'),
+                        'title' => 'Visa allt innehåll'
+                    ],                    
+                    // This is a menu item of the submenu
+                    'published'  => [
+                        'text'  => 'Publicerat innehåll',
+                        'url'   => $this->di->get('url')->create('content/published'),
+                        'title' => 'Visa aktiva användare'
+                    ],
+                    
+                    // This is a menu item of the submenu
+                    'unpublished'  => [
+                        'text'  => 'Opublicerat innehåll',
+                        'url'   => $this->di->get('url')->create('content/unpublished'),
+                        'title' => 'Visa opublicerat innehåll'
+                    ],
+                    
+                    // This is a menu item of the submenu
+                    'addcontent'  => [
+                        'text'  => 'Lägg till innehåll',
+                        'url'   => $this->di->get('url')->create('content/add'),
+                        'title' => 'Lägg till innehåll'
+                    ],
+                     // This is a menu item of the submenu
+                    'discarded'  => [
+                        'text'  => 'Papperskorgen',
+                        'url'   => $this->di->get('url')->create('content/discarded'),
+                        'title' => 'Visa papperskorgen'
+                    ],
+
+                    // This is a menu item of the submenu
+                    'setup'  => [
+                        'text'  => 'Återställ databasen',
+                        'url'   => $this->di->get('url')->create('setup-content'),
+                        'title' => 'Återställ databasen till sitt ursprungliga skick',
+                    ],
+                ],
+            ],
+        ],
+        
          // This is a menu item
         'source' => [
             'text'  =>'Källkod',
