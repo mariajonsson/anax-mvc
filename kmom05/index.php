@@ -187,6 +187,23 @@ $app->router->add('delete-comments', function() use ($app) {
   
 });
 
+$app->router->add('content', function() use ($app) {
+		$app->dispatcher->forward([
+        'controller' => 'content',
+        'action'     => 'list',
+    ]);
+});
+
+
+$app->router->add('setup-content', function() use ($app) {
+ 
+    $app->theme->setTitle("Återställ innehåll");
+    $app->views->add('content/setup', [
+        'title' => "Återställ databas",
+    ], 'main');
+
+});
+
  
 $app->router->handle();
 $app->theme->render();
