@@ -2,7 +2,7 @@
 namespace Meax\Content;
  
 /**
- * A controller for users and admin related events.
+ * A controller for content and admin related events.
  *
  */
 class ContentController implements \Anax\DI\IInjectionAware
@@ -28,11 +28,11 @@ public function initialize()
 public function listAction()
 {
  
-    $all = $this->users->findAll();
+    $all = $this->content->findAll();
     
     $this->theme->setTitle("Innehåll");
     $this->views->add('content/list-all', [
-        'users' => $all,
+        'content' => $all,
         'title' => "Allt innehåll",
     ], 'main');
 
@@ -50,8 +50,8 @@ public function idAction($id = null)
     $post = $this->content->find($id);
  
     $this->theme->setTitle("Innehåll");
-    $this->views->add('content/post', [
-        'content' => $post,
+    $this->views->add('content/view', [
+        'post' => $post,
     ], 'main');
     //$this->views->add('users/adminmenu', [], 'sidebar');
 }
@@ -107,7 +107,7 @@ public function updateAction($id = null)
     $deleted = $content->getProperties()['deleted'];
     $published = $content->getProperties()['published'];
     
-    $form = new \Anax\HTMLForm\CFormUserUpdate($id, $title, $url, $slug, $data, $acronym, $filter, $type, $publihsed, $deleted);
+    $form = new \Anax\HTMLForm\CFormContentEdit($id, $title, $url, $slug, $data, $acronym, $filter, $type, $published, $deleted);
     $form->setDI($this->di);
     $status = $form->check();
     
@@ -228,7 +228,7 @@ public function publishedAction()
  
     $this->theme->setTitle("Publicerat innehåll");
     $this->views->add('content/list-all', [
-        'users' => $all,
+        'content' => $all,
         'title' => "Publicerat innehåll",
     ], 'main');
 
@@ -248,7 +248,7 @@ public function unpublishedAction()
  
     $this->theme->setTitle("Opublicerat innehåll");
     $this->views->add('content/list-all', [
-        'users' => $all,
+        'content' => $all,
         'title' => "Opublicerat innehåll",
     ], 'main');
 

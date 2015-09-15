@@ -67,12 +67,13 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
                 'type'        => 'select-multiple',
                 'label'       => 'Filter',
                 'required'    => true,
-                'options'     => $filter,
+                'options'     => ['md', 'html'],
+                'selected'    => $filter,
             ],
             
             'type' => [
                 'type'        => 'select',
-                'label'       => 'Filter',
+                'label'       => 'Typ',
                 'required'    => true,
                 'options'     => ['blog','page'],
                 'selected'    => $type,
@@ -131,7 +132,7 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
 	    $this->published = null;
         }
         
-	$content = new \Meax\Content\CContent();
+	$content = new \Meax\Content\Content();
         $content->setDI($this->di);
         $saved = $content->save(array('id' => $this->id, 'title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'created' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $this->published));
     
@@ -172,7 +173,7 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
      */
     public function callbackSuccess()
     {
-         $this->redirectTo($this->redirect);
+         $this->redirectTo('content');
     }
 
 

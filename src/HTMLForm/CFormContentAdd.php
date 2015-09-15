@@ -11,13 +11,13 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;
 
-    private $redirect;
+    
 
     /**
      * Constructor
      *
      */
-    public function __construct($redirect)
+    public function __construct()
     {
         parent::__construct([], [
         
@@ -90,7 +90,7 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
         ]);
         
 
-        $this->redirect = $redirect;
+        
     }
 
 
@@ -118,7 +118,7 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
         $now = date('Y-m-d H:i:s');
         $published = !empty($_POST['published'])?$now:null;
         
-	$content = new \Meax\Content\CContent();
+	$content = new \Meax\Content\Content();
         $content->setDI($this->di);
         $saved = $content->save(array('title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'created' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $published));
     
@@ -137,7 +137,7 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
      */
     public function callbackReset()
     {
-         $this->redirectTo($this->redirect);
+        //$this->redirectTo($this->redirect);
     }
 
 
@@ -159,7 +159,7 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
      */
     public function callbackSuccess()
     {
-         $this->redirectTo($this->redirect);
+        $this->redirectTo('content');
     }
 
 
