@@ -45,11 +45,11 @@ class HTMLTable {
 	 * @param array $options search options needed for the query string.
 	 */
 	
-    public function showTable($columns, $values, $options) {
+    public function showTable($columns, $values, $options=null) {
     	
     $this->querystring = getQueryString($options);	
 
-    $html = "<table id=".$this->tablename.">";
+    $html = "<table id='".$this->tablename."'>";
     $html .= "<tr>";
     
     foreach ($columns as $column) {
@@ -61,8 +61,8 @@ class HTMLTable {
     foreach ($values as $row => $value) {
     $html .= "<tr>";
     
-    	foreach ($value as $val) {
-    		$html .= "<td>".$val."</td>";
+    	foreach ($columns as $column) {
+    		$html .= "<td>".$value->$column['name']."</td>";
     	}
     
     $html .= "</tr>";
