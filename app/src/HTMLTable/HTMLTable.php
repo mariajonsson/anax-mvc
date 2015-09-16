@@ -12,11 +12,10 @@ class HTMLTable {
 	*
 	*/
 	
-	public function __construct($tablename) {
+	public function __construct() {
 	
-		$this->tablename = $tablename;
-  }
-  
+	  }
+	
   
   /**
 	 * Use the current querystring as base, modify it according to $options and return the modified query string.
@@ -25,7 +24,7 @@ class HTMLTable {
 	 * @param string $prepend this to the resulting query string
 	 * @return string with an updated query string.
 	 */
-	function getQueryString($options, $prepend='?') {
+	function getQueryString($options=array(), $prepend='?') {
 	  // parse query string into array
 	  $query = array();
 	  parse_str($_SERVER['QUERY_STRING'], $query);
@@ -45,28 +44,30 @@ class HTMLTable {
 	 * @param array $options search options needed for the query string.
 	 */
 	
-    public function showTable($columns, $values, $options=null) {
+    public function createTable($columns, $values=null, $options, $tablename=null) {
     	
-    $this->querystring = getQueryString($options);	
+    $this->querystring = $this->getQueryString($options);	
 
-    $html = "<table id='".$this->tablename."'>";
+    $html = "<table id='".$tablename."'>";
     $html .= "<tr>";
     
     foreach ($columns as $column) {
-    	$orderby = ($column['sortable']==true) ? $this->orderby($column['name']) : null;
+    	$orderby = (isset($column['sortable']) && $column['sortable']==true) ? $this->orderby($column['name']) : null;
     	$html .= "<th>".$column['label'].$orderby."</th>";
     }
     $html .= "</tr>";
     
+    if (!empty($values)) {
     foreach ($values as $row => $value) {
     $html .= "<tr>";
     
     	foreach ($columns as $column) {
-    		$html .= "<td>".$value->$column['name']."</td>";
+    		$html .= "<td>".$value[$column['name']]."</td>";
     	}
     
     $html .= "</tr>";
      
+    }
     }
     
     $html .= "</table>";
