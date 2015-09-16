@@ -4,14 +4,17 @@ namespace Meax\HTMLTable;
 
 class HTMLTable {
 
-	private $columns;
+	private $querystring;
+	private $tablename;
 	
 	/**
 	* @param array $columns - array with columns
 	*
 	*/
 	
-	public function __construct($columns) {
+	public function __construct($tablename) {
+	
+		$this->tablename = $tablename;
   }
   
   
@@ -34,23 +37,36 @@ class HTMLTable {
 	  return $prepend . http_build_query($query);
 	}
 	
+	/**
+	 * Build an html table
+	 *
+	 * @param array $columns containing label and corresponding name
+	 * @param array $values containing the data
+	 * @param array $options search options needed for the query string.
+	 */
 	
-    public function showTable($columns, $values) {
+    public function showTable($columns, $values, $options) {
     	
-    $orderby = ($column['sortable']==true) ? $this->orderby(column['name']) : null;
+    $this->querystring = getQueryString($options);	
 
-    $html = "<table>";
+    $html = "<table id=".$this->tablename.">";
     $html .= "<tr>";
     
     foreach ($columns as $column) {
-    	$html .= "<td>".$column['label'].$orderby."</td>";
+    	$orderby = ($column['sortable']==true) ? $this->orderby($column['name']) : null;
+    	$html .= "<th>".$column['label'].$orderby."</th>";
     }
     $html .= "</tr>";
     
     foreach ($values as $row => $value) {
+    $html .= "<tr>";
     
-      $html .= "<tr><td>$row</td><td>{$film->id}</td><td><img src='{$film->image}'></td><td>{$film->title}</td><td>{$film->director}</td><td>{$film->YEAR}</td><td>{$film->genre}</td></tr>";
+    	foreach ($value as $val) {
+    		$html .= "<td>".$val."</td>";
+    	}
     
+    $html .= "</tr>";
+     
     }
     
     $html .= "</table>";
@@ -64,8 +80,10 @@ class HTMLTable {
   * @param string $column the name of the database column to sort by
   * @return string with links to order by column.
   */
-  public function orderby($column) {
-    return "<span class='orderby'><a href='?{$this->query}orderby={$column}&order=asc'>&darr;</i></a><a href='?{$this->query}orderby={$column}&order=desc'>&uarr;</a></span>";
+  public function orderby($column, $query=null) {
+  	  $query = null ? $this->querystring : $query;
+  	  
+    return "<span class='orderby'><a href='{$query}&orderby={$column}&order=asc'>&darr;</i></a><a href='{$query}&orderby={$column}&order=desc'>&uarr;</a></span>";
   }
   
 	  /**
