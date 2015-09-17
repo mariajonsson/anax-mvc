@@ -26,6 +26,7 @@ $app->router->add('', function() use ($app) {
     [
       'name' => 'animals',
       'label' => 'Animals',
+      'linkbase' => 'http://google.com'
       //'sortable' => false,
     ],
     );

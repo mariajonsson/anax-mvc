@@ -40,8 +40,8 @@ class SimpleHTMLTable {
     $html .= "<tr>";
     
     	foreach ($columns as $column) {
-    		
-    		$link = (isset($value[$column['link']])) ? '<a href="' .$value[$column['link']].'">' : null;
+    		$linkkey = (isset($column['linkkey'])) ? $value[$column['linkkey']] : null;
+    		$link = (isset($column['linkbase'])) ? '<a href="' .$column['linkbase'].$linkkey.'">' : null;
     		$endlink = !empty($link) ? "</a>" : null;
     		
     		$html .= "<td>".$link.$value[$column['name']].$endlink."</td>";

@@ -46,12 +46,20 @@ public function listAction()
  */
 public function listColumnsTableAction()
 {
+	$columnlist = '*';
+	if (!empty($this->columns)) {
+		foreach ($this->columns as $column) {
+		 $columnlist = $column['name'].', ';
+		}
+		$columnlist = trim($columnlist, ', ');
+	}
+	
 	$all = $this->content->query()
-	    ->select($columns[0]['name'])
+	    ->select($columnlist)
         ->execute();
 	
-	$table = new \Meax\HTMLTable\HTMLTable;
-	$contenttable = $table->createTable($columns, $all);
+	$table = new \Meax\HTMLTable\SimpleHTMLTable;
+	$contenttable = $table->createTable($this->columns, $all);
 	
 	$this->theme->setTitle("Innehåll");
     $this->views->add('default/page', [
@@ -336,7 +344,8 @@ public function setupContentAction()
     [
       'name' => 'title',
       'label' => 'Rubrik',
-      //'sortable' => false,
+      'linkbase' => 'content/id/',
+      'linkkey' => 'id',
     ],
     [
       'name' => 'acronym',
