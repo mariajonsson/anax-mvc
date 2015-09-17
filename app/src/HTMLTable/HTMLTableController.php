@@ -1,15 +1,13 @@
 <?php
-namespace Meax\Content;
+namespace Meax\HTMLTable;
  
 /**
  * A controller for content and admin related events.
  *
  */
-class ContentController implements \Anax\DI\IInjectionAware
+class HTMLTableController implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
-    
-    private $columns;
  
 /**
  * Initialize the controller.
@@ -18,8 +16,8 @@ class ContentController implements \Anax\DI\IInjectionAware
  */
 public function initialize()
 {
-    $this->content = new \Meax\Content\Content();
-    $this->content->setDI($this->di);
+    $this->table = new \Meax\HTMLTable\HTMLTable();
+    $this->table->setDI($this->di);
 }
 
 /**
@@ -38,27 +36,6 @@ public function listAction()
         'title' => "Allt innehåll",
     ], 'main');
 
-}
-/**
- * List content as html table based on selected columns
- *
- * @return void
- */
-public function listColumnsTableAction()
-{
-	$all = $this->content->query()
-	    ->select($columns[0]['name'])
-        ->execute();
-	
-	$table = new \Meax\HTMLTable\HTMLTable;
-	$contenttable = $table->createTable($columns, $all);
-	
-	$this->theme->setTitle("Innehåll");
-    $this->views->add('default/page', [
-        'content' => $contenttable,
-        'title' => "Allt innehåll",
-    ], 'main');
-	
 }
 
 /**
@@ -327,25 +304,6 @@ public function setupContentAction()
             'published' => ['datetime'],
         ]
     )->execute();
-    
-    $this->columns = array([
-      'name' => 'id',
-      'label' => 'ID',
-      //'sortable' => true,
-    ],
-    [
-      'name' => 'title',
-      'label' => 'Rubrik',
-      //'sortable' => false,
-    ],
-    [
-      'name' => 'acronym',
-      'label' => 'Av',
-      //'sortable' => false,
-    ],
-    );
-    
-    
     /*
     $this->db->insert(
         'user',

@@ -2,10 +2,11 @@
 
 namespace Meax\HTMLTable;
 
-class HTMLTable extends SimpleHTMLTable {
+class ContentHTMLTable extends HTMLTable {
 
 	private $querystring;
 	private $tablename;
+	private $columns;
 	
 	/**
 	* @param array $columns - array with columns
@@ -13,29 +14,33 @@ class HTMLTable extends SimpleHTMLTable {
 	*/
 	
 	public function __construct() {
-	
+	$columns = array([
+      'name' => 'fruits',
+      'label' => 'Fruits',
+      'sortable' => true,
+    ],
+    [
+      'name' => 'animals',
+      'label' => 'Animals',
+      //'sortable' => false,
+    ],
+    );
+    
+    $data = array(
+      1 => [
+      $columns[0]['name'] => 'Apple', 
+      $columns[1]['name'] => 'Horse' 
+       ],
+      2 => [
+      $columns[0]['name'] => 'Banana', 
+      $columns[1]['name'] => 'Monkey' 
+       ],
+    );	
+		
 	  }
 	
   
-  /**
-	 * Use the current querystring as base, modify it according to $options and return the modified query string.
-	 *
-	 * @param array $options to set/change.
-	 * @param string $prepend this to the resulting query string
-	 * @return string with an updated query string.
-	 */
-	function getQueryString($options=array(), $prepend='?') {
-	  // parse query string into array
-	  $query = array();
-	  parse_str($_SERVER['QUERY_STRING'], $query);
-	 
-	  // Modify the existing query string with new options
-	  $query = array_merge($query, $options);
-	 
-	  // Return the modified querystring
-	  return $prepend . http_build_query($query);
-	}
-	
+  	
 	/**
 	 * Build an html table
 	 *
