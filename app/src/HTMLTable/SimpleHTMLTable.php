@@ -31,20 +31,21 @@ class SimpleHTMLTable {
     $html .= "<tr>";
     
     foreach ($columns as $column) {
-    	$html .= "<th>".$column['label']"</th>";
+    	$html .= "<th>".$column['label']."</th>";
     }
     $html .= "</tr>";
     
     if (!empty($values)) {
-    foreach ($values as $row => $value) {
+    	print_r($values);
+    foreach ($values as $value) {
     $html .= "<tr>";
     
     	foreach ($columns as $column) {
-    		$linkkey = (isset($column['linkkey'])) ? $value[$column['linkkey']] : null;
+    		$linkkey = (isset($column['linkkey'])) ? $value->{$column['linkkey']} : null;
     		$link = (isset($column['linkbase'])) ? '<a href="' .$column['linkbase'].$linkkey.'">' : null;
     		$endlink = !empty($link) ? "</a>" : null;
     		
-    		$html .= "<td>".$link.$value[$column['name']].$endlink."</td>";
+    		$html .= "<td>".$link.$value->{$column['name']}.$endlink."</td>";
     	}
     
     $html .= "</tr>";

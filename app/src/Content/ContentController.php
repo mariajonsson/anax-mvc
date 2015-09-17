@@ -46,17 +46,20 @@ public function listAction()
  */
 public function listColumnsTableAction()
 {
-	$columnlist = '*';
+	$this->setColumns();
+	
+	$columnlist = '';
 	if (!empty($this->columns)) {
 		foreach ($this->columns as $column) {
-		 $columnlist = $column['name'].', ';
+		 $columnlist .= $column['name'].', ';
 		}
 		$columnlist = trim($columnlist, ', ');
 	}
+	else $columnslist = '*';
 	
-	$all = $this->content->query()
-	    ->select($columnlist)
-        ->execute();
+	$all = $this->content
+	    ->query($columnlist)
+	    ->execute();
 	
 	$table = new \Meax\HTMLTable\SimpleHTMLTable;
 	$contenttable = $table->createTable($this->columns, $all);
@@ -305,6 +308,28 @@ public function discardedAction()
 
 }
 
+public function setColumns() {
+
+	$this->columns = array([
+      'name' => 'id',
+      'label' => 'ID',
+      //'sortable' => true,
+    ],
+    [
+      'name' => 'title',
+      'label' => 'Rubrik',
+      'linkbase' => 'content/id/',
+      'linkkey' => 'id',
+    ],
+    [
+      'name' => 'acronym',
+      'label' => 'Av',
+      //'sortable' => false,
+    ],
+    );
+}
+
+
 /**
  * Setup table.
  *
@@ -336,23 +361,7 @@ public function setupContentAction()
         ]
     )->execute();
     
-    $this->columns = array([
-      'name' => 'id',
-      'label' => 'ID',
-      //'sortable' => true,
-    ],
-    [
-      'name' => 'title',
-      'label' => 'Rubrik',
-      'linkbase' => 'content/id/',
-      'linkkey' => 'id',
-    ],
-    [
-      'name' => 'acronym',
-      'label' => 'Av',
-      //'sortable' => false,
-    ],
-    );
+    
     
     
     /*
