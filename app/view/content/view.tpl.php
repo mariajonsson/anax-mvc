@@ -8,12 +8,14 @@ för att återställa användaren eller för att radera användaren permanent.
 </p>
 
 <h4><?=$post->getProperties()['title']?></h4>
-<p><?=$post->getProperties()['acronym']?></p>
-<br><?=$post->getProperties()['data']?></p>
-<p><?=$status?> <?=$date?>
-<br>Skapades <?=$post->getProperties()['created']?>
-<br><?=isset($post->getProperties()['updated'])?"Uppdaterad 
-".$post->getProperties ( ) [ 'updated' ]:'';?></p>
+<p>Av: <?=$post->getProperties()['acronym']?></p>
+<p><?=$post->getProperties()['data']?></p>
+
+<p>Skapades <?=$post->getProperties()['created']?>
+<?=isset($post->getProperties()['updated'])?"<br>Uppdaterad 
+".$post->getProperties ( ) [ 'updated' ]:'';?>
+<?=isset($post->getProperties()['published'])?"<br>Publicerades  
+".$post->getProperties ( ) [ 'published' ]:'';?></p>
 <p>
 <?php if ($post->getProperties()['deleted'] == null) : ?>
     <a 

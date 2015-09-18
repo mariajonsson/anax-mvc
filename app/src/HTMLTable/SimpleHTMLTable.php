@@ -7,7 +7,7 @@ class SimpleHTMLTable {
 
 	
 	/**
-	* 
+	* Creates an HTML table from an array or object.
 	*
 	*/
 	
@@ -21,7 +21,7 @@ class SimpleHTMLTable {
 	 * Build an html table
 	 *
 	 * @param array $columns containing label and corresponding name
-	 * @param array $values containing the data
+	 * @param array $values or @param object $values containing the data
 	 * 
 	 */
 	
@@ -36,16 +36,36 @@ class SimpleHTMLTable {
     $html .= "</tr>";
     
     if (!empty($values)) {
-    	print_r($values);
     foreach ($values as $value) {
     $html .= "<tr>";
     
     	foreach ($columns as $column) {
-    		$linkkey = (isset($column['linkkey'])) ? $value->{$column['linkkey']} : null;
+    		$link = null;
+    		$linkkey = null;
+    		$val = '';
+    		if (is_object($value)) { 
+    			$val = $value->{$column['name']};
+    			
+    			if (isset($column['linkkey'])) {
+    				$linkkey = $value->{$column['linkkey']};
+    			}
+    		}
+    		elseif (is_array($value)) {
+    			
+    			$val = $value[$column['name']];
+    			if (isset($column['linkkey'])) {
+    				$linkkey = $value[$column['linkkey']];
+    			}
+    		}
+    		if (isset($column['display'])) {
+    		$val = $this->getDisplayVal($val, $column['display']);
+    		}
+    		
     		$link = (isset($column['linkbase'])) ? '<a href="' .$column['linkbase'].$linkkey.'">' : null;
     		$endlink = !empty($link) ? "</a>" : null;
     		
-    		$html .= "<td>".$link.$value->{$column['name']}.$endlink."</td>";
+    		$html .= "<td>".$link.$val.$endlink."</td>";
+    		
     	}
     
     $html .= "</tr>";
@@ -58,6 +78,20 @@ class SimpleHTMLTable {
   }
 	
 	
+  public function getDisplayVal($val, $display=null, $datatype=null) {
+  	$displayval = $val;
+  	  switch ($display) {
+  	  
+  	  case 'yes-no':
+  	  	  if (empty($val) || $val === false) {
+  	  	  	  $displayval = "Nej";
+  	  	  }
+  	  	  else $displayval = "Ja";
+  	  	  
+  	  	  break;
+  	  }
+  	  return $displayval;
+  }
 
   
 }

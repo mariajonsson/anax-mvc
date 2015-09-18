@@ -21,13 +21,14 @@ $app->router->add('', function() use ($app) {
     $columns = array([
       'name' => 'fruits',
       'label' => 'Fruits',
-      'sortable' => true,
+      
     ],
     [
       'name' => 'animals',
       'label' => 'Animals',
-      'linkbase' => 'http://google.com'
-      //'sortable' => false,
+      'linkbase' => 'https://en.wikipedia.org/wiki/',
+      'linkkey' => 'animals',
+      
     ],
     );
     

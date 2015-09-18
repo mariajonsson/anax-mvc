@@ -313,19 +313,31 @@ public function setColumns() {
 	$this->columns = array([
       'name' => 'id',
       'label' => 'ID',
-      //'sortable' => true,
     ],
     [
       'name' => 'title',
       'label' => 'Rubrik',
-      'linkbase' => 'content/id/',
+      'linkbase' => 'id/',
       'linkkey' => 'id',
     ],
     [
       'name' => 'acronym',
       'label' => 'Av',
-      //'sortable' => false,
+      ],
+    [
+      'name' => 'published',
+      'label' => 'Publicerad',
+      'display' => 'yes-no',
     ],
+    [
+      'name' => 'created',
+      'label' => 'Skapad',
+     
+    ],
+    [
+      'name' => 'type',
+      'label' => 'Typ',
+    ]
     );
 }
 
@@ -361,51 +373,54 @@ public function setupContentAction()
         ]
     )->execute();
     
-    
-    
-    
-    /*
+    //Populate the database with some test data
+
     $this->db->insert(
-        'user',
-        ['acronym', 'email', 'name', 'password', 'created', 'active']
+        'content',
+        ['title', 'slug', 'type', 'data', 'filter', 'acronym', 'created', 'published']
     );
  
     $now = date('Y-m-d H:i:s');
  
     $this->db->execute([
-        'admin',
-        'admin@dbwebb.se',
-        'Administrator',
-        password_hash('admin', PASSWORD_DEFAULT),
+        'Välkommen',
+        'valkommen',
+        'blog',
+        'Välkomment till min me-sida. Det här är ett exempel.',
+        'md',
+        'maria',
         $now,
         $now
     ]);
  
     $this->db->execute([
+        'Nu är det höst',
+        'nu-ar-det-host',
+        'blog',
+        'Nu märks det att det har blivit höst. Dagarna är kortare, och det är regnigt och blåsigt ute.',
+        'md',
         'doe',
-        'doe@dbwebb.se',
-        'John/Jane Doe',
-        password_hash('doe', PASSWORD_DEFAULT),
         $now,
         $now
      ]);
      
          $this->db->execute([
+        'Testinlägg',
+        'test',
+        'blog',
+        'Det här är ett utkast som inte har publicerats.',
+        'md',
         'maria',
-        'choklad@post.utfors.se',
-        'Maria',
-        password_hash('maria', PASSWORD_DEFAULT),
         $now,
         null
      ]);
-     */
-     /*
+     
      $this->dispatcher->forward([
-        'controller' => 'users',
-        'action'     => 'list',
+        'controller' => 'content',
+        'action'     => 'list-columns-table',
         //'params'     => [],
     ]);
-    */
+    
     
 }
 
