@@ -57,7 +57,10 @@ class SimpleHTMLTable {
     				$linkkey = $value[$column['linkkey']];
     			}
     		}
-    		if (isset($column['display'])) {
+    		if (isset($column['display']) && isset($column['displayformat'])) {
+    		$val = $this->getDisplayVal($val, $column['display'], $column['displayformat']);
+    		}
+    		elseif (isset($column['display'])) {
     		$val = $this->getDisplayVal($val, $column['display']);
     		}
     		
@@ -78,15 +81,20 @@ class SimpleHTMLTable {
   }
 	
 	
-  public function getDisplayVal($val, $display=null, $datatype=null) {
+  public function getDisplayVal($val, $displaytype=null, $format=null) {
   	$displayval = $val;
-  	  switch ($display) {
+  	  switch ($displaytype) {
   	  
   	  case 'yes-no':
-  	  	  if (empty($val) || $val === false) {
+  	  	  if (empty($val) || $val === false || $val == 0) {
   	  	  	  $displayval = "Nej";
   	  	  }
   	  	  else $displayval = "Ja";
+  	  	  
+  	  	  break;
+  	  	  
+  	  case 'convert-datestr':
+  	  	  $displayval = date($format, strtotime($val));
   	  	  
   	  	  break;
   	  }

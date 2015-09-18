@@ -332,7 +332,8 @@ public function setColumns() {
     [
       'name' => 'created',
       'label' => 'Skapad',
-     
+      'display' => 'convert-datestr',
+      'displayformat' => 'Y-m-d H:i',
     ],
     [
       'name' => 'type',
