@@ -1,27 +1,20 @@
-<h1>Innehåll</h1>
-<p>
-<?php if ($post->getProperties()['deleted'] != null) : ?>
-Den här användaren är borttagen och kan inte redigeras. Gå till <a 
-href="<?=$this->di->get('url')->create('users/discarded')?>">papperskorgen</a> 
-för att återställa användaren eller för att radera användaren permanent.
-<?php endif; ?>
-</p>
+<article>
 
 <h4><?=$post->getProperties()['title']?></h4>
-<p>Av: <?=$post->getProperties()['acronym']?></p>
+<p>By <?=$post->getProperties()['acronym']?></p>
 <p><?=$post->getProperties()['data']?></p>
 
-<p>Skapades <?=$post->getProperties()['created']?>
-<?=isset($post->getProperties()['updated'])?"<br>Uppdaterad 
+<p>Created <?=$post->getProperties()['created']?>
+<?=isset($post->getProperties()['updated'])?"<br>Edited 
 ".$post->getProperties ( ) [ 'updated' ]:'';?>
-<?=isset($post->getProperties()['published'])?"<br>Publicerades  
+<?=isset($post->getProperties()['published'])?"<br>Published  
 ".$post->getProperties ( ) [ 'published' ]:'';?></p>
 <p>
 <?php if ($post->getProperties()['deleted'] == null) : ?>
     <a 
-href="<?=$this->url->create('content/update').'/'.$post->getProperties()['id']?>" 
-title='Ändra'><i class="fa fa-pencil"></i> Redigera innehåll
+href="<?=$this->url->create('content-basic/update').'/'.$post->getProperties()['id']?>" 
+title='Edit'>Edit contents
 </a>
 <?php endif; ?>
 </p>
-
+</article>

@@ -18,7 +18,7 @@ class ContentBasicController implements \Anax\DI\IInjectionAware
  */
 public function initialize()
 {
-    $this->content = new \Meax\Content\Content();
+    $this->content = new \Meax\Content\ContentBasic();
     $this->content->setDI($this->di);
 }
 
@@ -32,10 +32,10 @@ public function listAction()
  
     $all = $this->content->findAll();
     
-    $this->theme->setTitle("Innehåll");
+    $this->theme->setTitle("Content");
     $this->views->add('content/list-all', [
         'content' => $all,
-        'title' => "Allt innehåll",
+        'title' => "All content",
     ], 'main');
 
 }
@@ -52,11 +52,11 @@ public function idAction($id = null)
 {
     $post = $this->content->find($id);
  
-    $this->theme->setTitle("Innehåll");
+    $this->theme->setTitle("Content");
     $this->views->add('content/view', [
         'post' => $post,
     ], 'main');
-    //$this->views->add('users/adminmenu', [], 'sidebar');
+
 }
 
 /**
@@ -68,21 +68,52 @@ public function idAction($id = null)
  */
 public function addAction()
 {
- 
-    $form = new \Anax\HTMLForm\CFormContentAdd();
-    $form->setDI($this->di);
-    $status = $form->check();
-    
-    //$info = $this->di->fileContent->get('users-addinfo.md');
-    //$info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
-  
-    $this->di->theme->setTitle("Lägg till innehåll");
-    $this->di->views->add('default/page', [
-        'title' => "Lägg till innehåll",
-        'content' => $form->getHTML(), 
-        
+
+    $this->di->theme->setTitle("Add content");
+    $this->di->views->add('content/add', [
+        'title' => "Add content",
+             
         ], 'main');
 
+}
+
+
+public function postFormAction() 
+{
+    
+    $now = date('Y-m-d H:i:s');
+    $published = null;
+    
+    if (!empty($_POST['submit-add'])) {
+    $published = !empty($_POST['published'])?$now:null;
+    $saved = $this->content->save(array('title' => $_POST['title'], 'url' => $_POST['url'], 'slug' => $_POST['slug'], 'acronym' => $_POST['acronym'], 'created' => $now, 'data' => $_POST['data'], 'filter' => $_POST['filter'], 'type' => $_POST['type'], 'published' => $published));
+    }
+    else if (!empty($_POST['submit-edit'])) {
+        if ($_POST['publisheddate'] == null && !empty($_POST['published'])) {
+	    $published = $now;
+        }
+        else if ($_POST['publisheddate'] != null && empty($_POST['published'])) {
+	    $published = null;
+        }
+        else $published = $_POST['publisheddate'];
+   
+    $saved = $this->content->save(array('id' => $_POST['id'], 'title' => $_POST['title'], 'url' => $_POST['url'], 'slug' => $_POST['slug'], 'acronym' => $_POST['acronym'], 'created' => $now, 'data' => $_POST['data'], 'filter' => $_POST['filter'], 'type' => $_POST['type'], 'published' => $published));
+    }
+    
+    if ($saved) {
+      $this->dispatcher->forward([
+        'controller' => 'content-basic',
+        'action'     => 'list',
+        //'params'     => [],
+      ]);
+    }
+    else {
+    $this->di->theme->setTitle("Error");
+    $this->di->views->add('default/page', [
+        'title' => "Something went wrong",
+        'content' => "The data wasn't saved"     
+        ], 'main');
+    }
 }
 
 /**
@@ -110,43 +141,24 @@ public function updateAction($id = null)
     $deleted = $content->getProperties()['deleted'];
     $published = $content->getProperties()['published'];
     
-    $form = new \Anax\HTMLForm\CFormContentEdit($id, $title, $url, $slug, $data, $acronym, $filter, $type, $published, $deleted);
-    $form->setDI($this->di);
-    $status = $form->check();
-    
-    //$info = $this->di->fileContent->get('users-editinfo.md');
-    //$info = $this->di->textFilter->doFilter($info, 'shortcode, markdown');
-    
-    $this->di->theme->setTitle("Redigera innehåll");
-    $this->di->views->add('default/page', [
-        'title' => "Redigera innehåll",
-        'content' => $form->getHTML()
+    $this->di->theme->setTitle("Edit content");
+    $this->di->views->add('content/edit', [
+        'header' => "Edit content",
+        'title' => $title,
+        'url' => $url,
+        'slug' => $slug,
+        'data' => $data,
+        'acronym' => $acronym,
+        'filter' => $filter,
+        'type' => $type,
+        'deleted' => $deleted,
+        'published' => $published,
+        'id' => $id,
+        
         ]);
 
-    
-
 }
 
-/*
-public function insertUserAction($acronym, $email=null, $name=null)
-{
-
-    if (!isset($acronym)) {
-        die("Missing acronym");
-    }
-    $now = gmdate('Y-m-d H:i:s');
-
-    $this->users->save([
-        'acronym' => $acronym,
-        'email' => $email,
-        'name' => $acronym,
-        'password' => password_hash($acronym, PASSWORD_DEFAULT),
-        'created' => $now,
-        'active' => $now,
-    ]);
-
-}
-*/
 
 /**
  * Delete content.
@@ -163,7 +175,7 @@ public function deleteAction($id = null)
  
     $res = $this->content->delete($id);
  
-    $url = $this->url->create('content');
+    $url = $this->url->create('content-basic/list');
     $this->response->redirect($url);
 }
 
@@ -188,7 +200,7 @@ public function undoDeleteAction($id = null)
     $content->deleted = null;
     $content->save();
  
-    $url = $this->url->create('content/id/' . $id);
+    $url = $this->url->create('content-basic/id/' . $id);
     $this->response->redirect($url);
 }
 
@@ -213,7 +225,7 @@ public function softDeleteAction($id = null)
     $content->deleted = $now;
     $content->save();
  
-    $url = $this->url->create('content/id/' . $id);
+    $url = $this->url->create('content-basic/id/' . $id);
     $this->response->redirect($url);
 }
 
@@ -229,10 +241,10 @@ public function publishedAction()
         ->andWhere('deleted is NULL')
         ->execute();
  
-    $this->theme->setTitle("Publicerat innehåll");
+    $this->theme->setTitle("Published content");
     $this->views->add('content/list-all', [
         'content' => $all,
-        'title' => "Publicerat innehåll",
+        'title' => "Published content",
     ], 'main');
 
 }
@@ -249,10 +261,10 @@ public function unpublishedAction()
         ->andWhere('deleted is NULL')
         ->execute();
  
-    $this->theme->setTitle("Opublicerat innehåll");
+    $this->theme->setTitle("Unpublished content");
     $this->views->add('content/list-all', [
         'content' => $all,
-        'title' => "Opublicerat innehåll",
+        'title' => "Unpublished content",
     ], 'main');
 
 }
@@ -269,10 +281,10 @@ public function discardedAction()
         ->where('deleted is NOT NULL')
         ->execute();
  
-    $this->theme->setTitle("Papperskorgen");
+    $this->theme->setTitle("Trash");
     $this->views->add('content/list-deleted', [
         'users' => $all,
-        'title' => "Papperskorgen",
+        'title' => "Trash",
     ], 'main');
 
 }
@@ -290,10 +302,10 @@ public function setupContentAction()
 
     $this->db->setVerbose();
  
-    $this->db->dropTableIfExists('content')->execute();
+    $this->db->dropTableIfExists('contentbasic')->execute();
  
     $this->db->createTable(
-        'content',
+        'contentbasic',
         [
             'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
             'title' => ['varchar(100)', 'not null'],
@@ -310,55 +322,76 @@ public function setupContentAction()
         ]
     )->execute();
     
-    //Populate the database with some test data
+       
+    }
+    
+    /**
+    * Populate the database with some test data.
+    *
+    * @return void
+    */
+    
+    public function autoPopulateAction()
+    {
+    
 
     $this->db->insert(
-        'content',
+        'contentbasic',
         ['title', 'slug', 'type', 'data', 'filter', 'acronym', 'created', 'published']
     );
  
     $now = date('Y-m-d H:i:s');
  
     $this->db->execute([
-        'Välkommen',
-        'valkommen',
+        'Welcome',
+        'welcome',
         'blog',
-        'Välkomment till min me-sida. Det här är ett exempel.',
+        'Welcome to my test page.',
         'md',
-        'maria',
+        'user',
         $now,
         $now
     ]);
  
     $this->db->execute([
-        'Nu är det höst',
-        'nu-ar-det-host',
+        'A test',
+        'a-test',
         'blog',
-        'Nu märks det att det har blivit höst. Dagarna är kortare, och det är regnigt och blåsigt ute.',
+        'This is just a test.',
         'md',
-        'doe',
+        'user',
         $now,
         $now
      ]);
      
-         $this->db->execute([
-        'Testinlägg',
-        'test',
+     $this->db->execute([
+        'Draft',
+        'draft',
         'blog',
-        'Det här är ett utkast som inte har publicerats.',
+        'This is an unpublished draft.',
         'md',
-        'maria',
+        'user',
         $now,
         null
      ]);
      
-     $this->dispatcher->forward([
-        'controller' => 'content',
-        'action'     => 'list-columns-table',
+         
+    
+}
+
+  public function setupPopulateAction() 
+  {
+  
+    $this->setupContentAction();
+    $this->autoPopulateAction();
+    
+    $this->dispatcher->forward([
+        'controller' => 'content-basic',
+        'action'     => 'list',
         //'params'     => [],
     ]);
     
-    
-}
+  
+  }
 
 }

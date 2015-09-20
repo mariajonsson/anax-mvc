@@ -56,7 +56,67 @@ public function listColumnsTableAction()
 }
 
 
+/**
+ * Add new content.
+ *
+ * 
+ *
+ * @return void
+ */
+public function addAction()
+{
+ 
+    $form = new \Anax\HTMLForm\CFormContentAdd();
+    $form->setDI($this->di);
+    $status = $form->check();
+    
+    $this->di->theme->setTitle("Lägg till innehåll");
+    $this->di->views->add('default/page', [
+        'title' => "Lägg till innehåll",
+        'content' => $form->getHTML(), 
+        
+        ], 'main');
 
+}
+
+/**
+ * Update content.
+ *
+ * @param $id of content to update.
+ *
+ * @return void
+ */
+public function updateAction($id = null)
+{
+
+    if (!isset($id)) {
+        die("Missing id");
+    }
+    
+    $content = $this->content->find($id);
+    $title = $content->getProperties()['title'];
+    $url = $content->getProperties()['url'];
+    $slug = $content->getProperties()['slug'];
+    $data = $content->getProperties()['data'];
+    $acronym = $content->getProperties()['acronym'];
+    $filter = $content->getProperties()['filter'];
+    $type = $content->getProperties()['type'];
+    $deleted = $content->getProperties()['deleted'];
+    $published = $content->getProperties()['published'];
+    
+    $form = new \Anax\HTMLForm\CFormContentEdit($id, $title, $url, $slug, $data, $acronym, $filter, $type, $published, $deleted);
+    $form->setDI($this->di);
+    $status = $form->check();
+    
+    $this->di->theme->setTitle("Redigera innehåll");
+    $this->di->views->add('default/page', [
+        'title' => "Redigera innehåll",
+        'content' => $form->getHTML()
+        ]);
+
+    
+
+}
 
   public function setColumns() 
   {
