@@ -19,27 +19,61 @@ public function initialize()
 {
     $this->content = new \Meax\Content\Content();
     $this->content->setDI($this->di);
+    
+    $this->controllername = 'content';
+    $this->dbname = 'content';
 }
 
+
+/**
+ * List content with id.
+ *
+ * @param int $id of content post to display
+ *
+ * @return void
+ */
+public function idAction($id = null)
+{
+    $post = $this->content->find($id);
+ 
+    $this->theme->setTitle("Innehåll");
+    $this->views->add('content/view', [
+        'controller' => $this->controllername,
+        'post' => $post,
+    ], 'main');
+
+}
+
+/**
+ * List all unpublished and not deleted content.
+ *
+ * @return void
+ */
+public function unpublishedAction()
+{
+    $all = $this->content->query()
+        ->where('published IS NULL')
+        ->andWhere('deleted is NULL')
+        ->execute();
+ 
+    $this->theme->setTitle("Opublicerat innehåll");
+    $this->views->add('content/list-all', [
+        'content' => $all,
+        'title' => "Opublicerat innehåll",
+    ], 'main');
+
+}
 
 /**
  * List content as html table based on selected columns
  *
  * @return void
  */
-public function listColumnsTableAction()
+public function listAction()
 {
-	$this->setColumns();
+	$columnlist = $this->setColumns();
 	
-	$columnlist = '';
-	if (!empty($this->columns)) {
-		foreach ($this->columns as $column) {
-		 $columnlist .= $column['name'].', ';
-		}
-		$columnlist = trim($columnlist, ', ');
-	}
-	else $columnslist = '*';
-	
+
 	$all = $this->content
 	    ->query($columnlist)
 	    ->execute();
@@ -54,7 +88,47 @@ public function listColumnsTableAction()
     ], 'main');
 	
 }
+/**
+ * List all published and not deleted content.
+ *
+ * @return void
+ */
+public function publishedAction()
+{
+    $all = $this->content->query()
+        ->where('published IS NOT NULL')
+        ->andWhere('deleted is NULL')
+        ->execute();
+ 
+    $this->theme->setTitle("Publicerat innehåll");
+    $this->views->add('content/list-all', [
+        'content' => $all,
+        'title' => "Publicerat innehåll",
+    ], 'main');
 
+}
+
+public function discardedAction()
+{
+
+  $columnlist = $this->setColumns();
+	
+
+    $all = $this->content
+      ->query($columnlist)
+      ->where('deleted is NOT NULL')
+      ->execute();
+      
+    $table = new \Meax\HTMLTable\SimpleHTMLTable;
+    $contenttable = $table->createTable($this->columns, $all);
+ 
+    $this->theme->setTitle("Papperskorgen");
+    $this->views->add('default/page', [
+        'content' => $contenttable,
+        'title' => "Papperskorgen",
+    ], 'main');
+
+}
 
 /**
  * Add new content.
@@ -120,6 +194,8 @@ public function updateAction($id = null)
 
   public function setColumns() 
   {
+  
+      $url = $this->url->create($this->controllername.'/id');
 
 	$this->columns = array([
       'name' => 'id',
@@ -128,7 +204,7 @@ public function updateAction($id = null)
     [
       'name' => 'title',
       'label' => 'Rubrik',
-      'linkbase' => 'id/',
+      'linkbase' => $url.'/',
       'linkkey' => 'id',
     ],
     [
@@ -151,6 +227,17 @@ public function updateAction($id = null)
       'label' => 'Typ',
     ]
     );
+    
+    $columnlist = '';
+	if (!empty($this->columns)) {
+		foreach ($this->columns as $column) {
+		 $columnlist .= $column['name'].', ';
+		}
+		$columnlist = trim($columnlist, ', ');
+	}
+	else $columnslist = '*';
+	
+    return $columnlist;
   }
 
 

@@ -129,6 +129,36 @@ return [
         ],
         
         // This is a menu item
+        'modules' => [
+            'text'  =>'Moduler',
+            'url'   => $this->di->get('url')->create('modules'),
+            'title' => 'Moduler', 
+            'mark-if-parent-of' => 'modules',
+            
+            // Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+
+                'items' => [
+
+                    // This is a menu item of the submenu
+                    'contentbasic'  => [
+                        'text'  => 'Basic Content',
+                        'url'   => $this->di->get('url')->create('basiccontent.php'),
+                        'title' => 'Enkel innehållsmodul'
+                    ],                    
+                    // This is a menu item of the submenu
+                    'simplehtmltable'  => [
+                        'text'  => 'Simple HTML Table',
+                        'url'   => $this->di->get('url')->create('simplehtmltable.php'),
+                        'title' => 'Enkel tabellskapare'
+                    ],
+                    
+                    
+                ],
+            ],
+        ],
+        
+        // This is a menu item
         'content' => [
             'text'  =>'Innehåll',
             'url'   => $this->di->get('url')->create('content'),

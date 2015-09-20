@@ -12,7 +12,7 @@
 <p>
 <label>URL</label>
 <br/>
-<input type='text' name='url' required='required' value='<?=$url?>'/>
+<input type='text' name='url' value='<?=$url?>'/>
 
 </p>
 <p>

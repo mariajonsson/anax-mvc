@@ -62,21 +62,19 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
                 'value'       => $acronym,
                 'validation'  => ['not_empty'],
             ],
-            
             'filter' => [
-                'type'        => 'select-multiple',
+                'type'        => 'text',
                 'label'       => 'Filter',
-                'required'    => true,
-                'options'     => ['md', 'html'],
-                'selected'    => $filter,
+                'value'    => $filter,
+                'description'     => 'Ex: markdown, nl2br',
             ],
-            
+                      
             'type' => [
                 'type'        => 'select',
                 'label'       => 'Typ',
                 'required'    => true,
-                'options'     => ['blog','page'],
-                'selected'    => $type,
+                'options'     => ['blog' => 'blog','page' => 'page'],
+                'value'    => $type,
             ],
             
             'published' => [
@@ -134,7 +132,7 @@ class CFormContentEdit extends \Mos\HTMLForm\CForm
         
 	$content = new \Meax\Content\Content();
         $content->setDI($this->di);
-        $saved = $content->save(array('id' => $this->id, 'title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'created' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $this->published));
+        $saved = $content->save(array('id' => $this->id, 'title' => $this->Value('title'), 'url' => $this->Value('url'), 'slug' => $this->Value('slug'), 'acronym' => $this->Value('acronym'), 'updated' => $now, 'data' => $this->Value('data'), 'filter' => $this->Value('filter'), 'type' => $this->Value('type'), 'published' => $this->published));
     
        // $this->saveInSession = true;
         

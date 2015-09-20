@@ -205,7 +205,22 @@ $app->router->add('setup-content', function() use ($app) {
  
     $app->theme->setTitle("Återställ innehåll");
     $app->views->add('content/setup', [
+        'controller' => 'content',
         'title' => "Återställ databas",
+    ], 'main');
+
+});
+
+
+$app->router->add('modules', function() use ($app) {
+
+    $content = $app->fileContent->get('moduler.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 
+    $app->theme->setTitle("Moduler");
+    $app->views->add('default/page', [
+        'title' => "Egenutvecklade moduler",
+        'content' => $content,
     ], 'main');
 
 });

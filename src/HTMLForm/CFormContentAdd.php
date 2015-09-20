@@ -57,17 +57,17 @@ class CFormContentAdd extends \Mos\HTMLForm\CForm
             ],
             
             'filter' => [
-                'type'        => 'select-multiple',
+                'type'        => 'text',
                 'label'       => 'Filter',
-                'required'    => true,
-                'options'     => ['md','html'],
+                //'required'    => true,
+                'description'     => 'Ex: markdown, nl2br',
             ],
             
             'type' => [
                 'type'        => 'select',
-                'label'       => 'Filter',
+                'label'       => 'Typ',
                 'required'    => true,
-                'options'     => ['blog','page'],
+                'options'     => ['blog' => 'blog','page' => 'page'],
             ],
             
             'published' => [

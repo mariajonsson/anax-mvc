@@ -9,8 +9,9 @@ class ContentBasicController implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
     
-    private $columns;
- 
+
+    protected $dbname;
+    protected $controllername;
 /**
  * Initialize the controller.
  *
@@ -20,6 +21,10 @@ public function initialize()
 {
     $this->content = new \Meax\Content\ContentBasic();
     $this->content->setDI($this->di);
+    
+    $this->controllername = 'content-basic';
+    $this->dbname = 'contentbasic';
+
 }
 
 /**
@@ -54,6 +59,7 @@ public function idAction($id = null)
  
     $this->theme->setTitle("Content");
     $this->views->add('content/view', [
+        'controller' => $this->controllername,
         'post' => $post,
     ], 'main');
 
@@ -175,7 +181,7 @@ public function deleteAction($id = null)
  
     $res = $this->content->delete($id);
  
-    $url = $this->url->create('content-basic/list');
+    $url = $this->url->create($this->controllername.'/list');
     $this->response->redirect($url);
 }
 
@@ -200,7 +206,7 @@ public function undoDeleteAction($id = null)
     $content->deleted = null;
     $content->save();
  
-    $url = $this->url->create('content-basic/id/' . $id);
+    $url = $this->url->create($this->controllername.'/id/' . $id);
     $this->response->redirect($url);
 }
 
@@ -225,7 +231,7 @@ public function softDeleteAction($id = null)
     $content->deleted = $now;
     $content->save();
  
-    $url = $this->url->create('content-basic/id/' . $id);
+    $url = $this->url->create($this->controllername.'/id/' . $id);
     $this->response->redirect($url);
 }
 
@@ -302,10 +308,10 @@ public function setupContentAction()
 
     $this->db->setVerbose();
  
-    $this->db->dropTableIfExists('contentbasic')->execute();
+    $this->db->dropTableIfExists($this->dbname)->execute();
  
     $this->db->createTable(
-        'contentbasic',
+        $this->dbname,
         [
             'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
             'title' => ['varchar(100)', 'not null'],
@@ -336,7 +342,7 @@ public function setupContentAction()
     
 
     $this->db->insert(
-        'contentbasic',
+        $this->dbname,
         ['title', 'slug', 'type', 'data', 'filter', 'acronym', 'created', 'published']
     );
  
@@ -386,7 +392,7 @@ public function setupContentAction()
     $this->autoPopulateAction();
     
     $this->dispatcher->forward([
-        'controller' => 'content-basic',
+        'controller' => $this->controllername,
         'action'     => 'list',
         //'params'     => [],
     ]);

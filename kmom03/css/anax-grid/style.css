@@ -883,31 +883,31 @@ p.buttons {
 .moody h5 {
   color: #579ACB;
 }
-.regions #wrapper {
+.body-regions #wrapper {
   background-image: url(grid_12_60_20.png);
 }
-.regions #header,
-.regions #navbar,
-.regions #flash,
-.regions #footer,
-.regions #main,
-.regions #sidebar,
-.regions #featured-1,
-.regions #featured-2,
-.regions #featured-3,
-.regions #triptych-1,
-.regions #triptych-2,
-.regions #triptych-3,
-.regions #footer-col-1,
-.regions #footer-col-2,
-.regions #footer-col-3,
-.regions #footer-col-4 {
+.body-regions #header,
+.body-regions #navbar,
+.body-regions #flash,
+.body-regions #footer,
+.body-regions #main,
+.body-regions #sidebar,
+.body-regions #featured-1,
+.body-regions #featured-2,
+.body-regions #featured-3,
+.body-regions #triptych-1,
+.body-regions #triptych-2,
+.body-regions #triptych-3,
+.body-regions #footer-col-1,
+.body-regions #footer-col-2,
+.body-regions #footer-col-3,
+.body-regions #footer-col-4 {
   background-color: #b4b4b4;
 }
-.grid #wrapper {
+.body-grid #wrapper {
   background-image: url(grid_12_60_20.png);
 }
-.typography #wrapper {
+.body-typography #wrapper {
   background-image: url(grid_12_60_20.png);
 }
 @font-face {

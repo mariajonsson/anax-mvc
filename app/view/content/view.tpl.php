@@ -1,19 +1,19 @@
 <article>
 
 <h4><?=$post->getProperties()['title']?></h4>
-<p>By <?=$post->getProperties()['acronym']?></p>
+<p>Av <?=$post->getProperties()['acronym']?></p>
 <p><?=$post->getProperties()['data']?></p>
 
-<p>Created <?=$post->getProperties()['created']?>
-<?=isset($post->getProperties()['updated'])?"<br>Edited 
+<p>Skapad <?=$post->getProperties()['created']?>
+<?=isset($post->getProperties()['updated'])?"<br>Redigerad 
 ".$post->getProperties ( ) [ 'updated' ]:'';?>
-<?=isset($post->getProperties()['published'])?"<br>Published  
+<?=isset($post->getProperties()['published'])?"<br>Publicerad  
 ".$post->getProperties ( ) [ 'published' ]:'';?></p>
 <p>
 <?php if ($post->getProperties()['deleted'] == null) : ?>
     <a 
-href="<?=$this->url->create('content-basic/update').'/'.$post->getProperties()['id']?>" 
-title='Edit'>Edit contents
+href="<?=$this->url->create($controller.'/update').'/'.$post->getProperties()['id']?>" 
+title='Edit'>Redigera innehåll
 </a>
 <?php endif; ?>
 </p>

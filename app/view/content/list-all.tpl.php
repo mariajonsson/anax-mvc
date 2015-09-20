@@ -7,14 +7,14 @@
  
 <article class='content'>
 <h3><a href='id/<?=$id?>'><?=$post['title']?></a></h3>
-<p>By <em><?=$post['acronym']?></em>, <?=$post['created']?></p>
+<p>Av <em><?=$post['acronym']?></em>, <?=$post['created']?></p>
 <p><?=$post['data']?></p>
 <p class='content-footer'>
 <?php if (!empty($post['published'])) : ?>
-Published <?=$post['published']?>
+Publicerad <?=$post['published']?>
 <?php endif; ?>
 <?php if (!empty($post['updated'])) : ?>
-<br>Edited <?=$post['updated']?>
+<br>Redigerad <?=$post['updated']?>
 <?php endif; ?>
 </p>
 </article>
