@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.4",
         "phpmvc/comment": "dev-master",
-        "nojacko/email-validator": "1.0.1"
+        "nojacko/email-validator": "1.0.1",
+        "emmtho/rss": "dev-master"
     },
     "autoload": {
         "psr-4": { "Anax\\": "src/" }

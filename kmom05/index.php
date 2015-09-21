@@ -38,6 +38,11 @@ $di->set('ContentController', function() use ($di) {
     return $controller;
 });
 
+$di->setShared('rss', function() {
+    $rss = new \Anax\RSS\RSS();
+    return $rss;
+});
+
 $di->set('form', '\Mos\HTMLForm\CForm');
 
 $app->session();
@@ -215,6 +220,12 @@ $app->router->add('setup-content', function() use ($app) {
 
 $app->router->add('modules', function() use ($app) {
 
+  $xml = "http://dbwebb.se/forum/feed.php";
+  $xmlDoc = new DOMDocument();
+  $xmlDoc->load($xml);
+
+
+
     $content = $app->fileContent->get('moduler.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
  
@@ -223,6 +234,10 @@ $app->router->add('modules', function() use ($app) {
         'title' => "Egenutvecklade moduler",
         'content' => $content,
     ], 'main');
+    $app->views->addString('<h2>Installerad modul</h2><p>I uppgiften ingock även att installera en modul som gjorts av någon annan i kursen. Jag har installerat en modul för RSS-flöden: emmtho/rss. <a href="test-rss.php">Klicka här för att se</a>.', 'sidebar');
+    //$app->views->addString("<article class='smaller'><h4>RSS-flöde från " . $app->rss->setupAndGetTitle($xmlDoc) . " forumet</h4>". $app->rss->getContent($xmlDoc)."</article>", 'sidebar');
+    
+    
 
 });
 

@@ -2,6 +2,7 @@
 <a id='kmom05'>Kmom05</a>
 ------
 
+Mina moduler: [http://www.student.bth.se/~maje15/phpmvc/anax-mvc/kmom05/modules](http://www.student.bth.se/~maje15/phpmvc/anax-mvc/kmom05/modules)
 
 **Var hittade du inspiration till ditt val av modul och var hittade du kodbasen som du använde?**
 
@@ -29,8 +30,9 @@ Att testa att modulen fungerade med Anax MVC gick smidigt. Jag gjorde en ny inst
 
 **Gjorde du extrauppgiften? Beskriv i så fall hur du tänkte och vilket resultat du fick.**
 
+Jag hittade en RSS-modul (emmtho/rss) som jag valde att implementera. Hade själv funderat på att göra en RSS-modul så det passade bra. Jag flyttade test-filen till webroot-katalogen men initialt så räckte inte det. Jag fick även flytta in src-filerna i Anax src, och ta bort en rad från test-filen (`$di  = new \Anax\DI\CDIFactoryDefault();`) för att få det att fungera.
 
-**Om mina moduler**
+**Om mina moduler:**
 
 **chtmltable**
 
@@ -39,32 +41,24 @@ chtmltable är skriven för att skapa enkla HTML-tabeller. Den stödjer inte pag
 *  klassen  `SimpleHTMLTable.php` [(källkod)](source?path=app/src/HTMLTable/SimpleHTMLTable.php) 
 *  exempelfilen `simplehtmltable.php` [(källkod)](source?path=kmom05/simplehtmltable.php).
 
-Jag har installerat chtmltable i [min vanliga Anax-MVC installation](simplehtmltable.php)  och som ett paket från packagist [i en "ren" testinstallation av Anax-MVC](http://www.student.bth.se/~maje15/phpmvc/anax-test/webroot/simplehtmltable.php).  
-
-Paketet finns på [GitHub](https://github.com/mariajonsson/chtmltable) och på [Packagist](https://packagist.org/packages/meax/chtmltable) och där kan man läsa Readme-filen.  
+Jag har installerat chtmltable i [min vanliga Anax-MVC installation](simplehtmltable.php)  och som ett paket från packagist [i en "ren" testinstallation av Anax-MVC](http://www.student.bth.se/~maje15/phpmvc/anax-test/webroot/simplehtmltable.php). Paketet finns på [GitHub](https://github.com/mariajonsson/chtmltable) och på [Packagist](https://packagist.org/packages/meax/chtmltable) och där kan man läsa Readme-filen.  
 
 **ccontent**
 
-ccontent är skriven för att hantera innehåll i form av blogposter eller innehållsposter. Den är en vidareutveckling på CContent från oophp-kursen. Med Content kan man skapa innehåll av olika typ. Jag har inte lagt in någon hantering för olika typer än, tänker att det kommer. Jag har lagt in fält där man kan ange filter, för jag tänker att man kanske vill kunna ha stöd av CTextFilter eller liknande. Det finns ett fält för författare (acronym), men det är inte kopplat till user än, det kändes för komplicerat att göra i detta läget, men det är en funktionalitet jag tänker mig kan skapas senare.
+ccontent är skriven för att hantera innehåll i form av blogposter eller innehållsposter. Den är en vidareutveckling på CContent från oophp-kursen. Med Content kan man skapa innehåll av olika typ. Jag har inte lagt in någon hantering för olika typer än, tänker att det kommer. Jag har lagt in fält där man kan ange filter, för jag tänker att man kanske vill kunna ha stöd av CTextFilter eller liknande. Det finns ett fält för författare (acronym), men det är inte kopplat till user än, det kändes för komplicerat att göra i detta läget, men det är en funktionalitet jag tänker mig kan skapas senare. Paketet är beroende av CDatabase.
 
 *  klassen `ContentBasic.php` [(källkod)](source?path=app/src/Content/ContentBasic.php), 
 *  kontrollern `ContentBasicController.php` [(källkod)](source?path=app/src/Content/ContentBasicController.php) 
 *  exempelfilen `basiccontent.php` [(källkod)](source?path=kmom05/basiccontent.php). 
 
-Man behöver installera `CDatabase` för att modulen ska fungera. Paketet inluderar även `DatabaseModel.php` som skapades i tidigare kursmoment.
+Paketet inluderar även `DatabaseModel.php` som skapades i tidigare kursmoment.
 
-Jag har installerat ccontent i [min vanliga Anax-MVC installation](basiccontent.php) och som ett paket från packagist [i en "ren" testinstallation av Anax-MVC](http://www.student.bth.se/~maje15/phpmvc/anax-test/webroot/basiccontent.php).  
-
-Paketet finns på [GitHub](https://github.com/mariajonsson/ccontent) och på [Packagist](https://packagist.org/packages/meax/ccontent) och där kan man läsa Readme-filen.  
+Jag har installerat ccontent i [min vanliga Anax-MVC installation](basiccontent.php) och som ett paket från packagist [i en "ren" testinstallation av Anax-MVC](http://www.student.bth.se/~maje15/phpmvc/anax-test/webroot/basiccontent.php). Paketet finns på [GitHub](https://github.com/mariajonsson/ccontent) och på [Packagist](https://packagist.org/packages/meax/ccontent) och där kan man läsa Readme-filen.  
 
 
 **Vidareutveckling**
 
-Jag har jobbat vidare med chtmltable och ccontent i mitt Anax-MVC. Till exempel så har jag arbetat vidare med `ContentBasicController()` och skapat en `ContentController()`. 
-
-I den nya `ContentController()` har jag till exempel testat att använda mig av `SimpleHTMLTable()` för att skapa listor över innehållet för vissa sidor. 
-
-Jag har även använt mig av `CForm()` för att skapa formulär för att lägga till och redigera innehåll. 
+Jag har jobbat vidare med chtmltable och ccontent i mitt Anax-MVC. Till exempel så har jag arbetat vidare med `ContentBasicController()` och skapat en `ContentController()`. I den nya `ContentController()` har jag till exempel testat att använda mig av `SimpleHTMLTable()` för att skapa listor över innehållet för vissa sidor. Jag har även använt mig av `CForm()` för att skapa formulär för att lägga till och redigera innehåll. 
 
 Jag har även börjat arbeta vidare med tänkta metoder i en `HTMLTable`, men inget av detta är färdigt nog för att bli egna moduler.  
 
