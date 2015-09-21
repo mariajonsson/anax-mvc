@@ -234,7 +234,7 @@ $app->router->add('modules', function() use ($app) {
         'title' => "Egenutvecklade moduler",
         'content' => $content,
     ], 'main');
-    $app->views->addString('<h2>Installerad modul</h2><p>I uppgiften ingock även att installera en modul som gjorts av någon annan i kursen. Jag har installerat en modul för RSS-flöden: emmtho/rss. <a href="test-rss.php">Klicka här för att se</a>.', 'sidebar');
+    $app->views->addString('<h2>Installerad modul</h2><p>I uppgiften ingick även att installera en modul som gjorts av någon annan i kursen. Jag har installerat en modul för RSS-flöden: emmtho/rss. <a href="test-rss.php">Klicka här för att se</a>.', 'sidebar');
     //$app->views->addString("<article class='smaller'><h4>RSS-flöde från " . $app->rss->setupAndGetTitle($xmlDoc) . " forumet</h4>". $app->rss->getContent($xmlDoc)."</article>", 'sidebar');
     
     
