@@ -10,7 +10,7 @@
     <tr>
     <td><?=$user->getProperties()['id']?></td>
     <td><a href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'/'.$this->request->getRoute()?>" class="user-deleted"><i class="fa fa-user-times fa-fw user-deleted"></i></a></td>
-    <td><a href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>" class="<?=$class?>"><?=$user->getProperties()['acronym']?></a></td>
+    <td><a href="<?=$this->url->create('users/id').'/'.$user->getProperties()['id']?>" class="user-deleted"><?=$user->getProperties()['acronym']?></a></td>
     <td><?=$user->getProperties()['name']?></td>
     <td><a href="<?=$this->url->create('users/activate').'/'.$user->getProperties()['id'].'/'.$this->request->getRoute()?>" title='Aktivera'><i class="fa fa-undo"></i></a>
     </td>
